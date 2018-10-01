@@ -1,0 +1,28 @@
+
+{
+    "umturnosApp": {
+        "clinic" : {
+            "home": {
+                "title": "Clinics",
+                "createLabel": "Crear nuevo Clinic",
+                "createOrEditLabel": "Crear o editar Clinic"
+            },
+            "created": "Un nuevo Clinic ha sido creado con el identificador {{ param }}",
+            "updated": "Un Clinic ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Clinic ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Clinic {{ id }}?"
+            },
+            "detail": {
+                "title": "Clinic"
+            },
+            "name": "Name",
+            "email": "Email",
+            "address": "Address",
+            "phone": "Phone",
+            "website": "Website",
+            "note": "Note",
+            "turns": "Turns"
+        }
+    }
+}

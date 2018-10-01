@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="patient">
+            <h2><span jhiTranslate="umturnosApp.patient.detail.title">Patient</span> {{patient.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="umturnosApp.patient.name">Name</span></dt>
+                <dd>
+                    <span>{{patient.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.surName">Sur Name</span></dt>
+                <dd>
+                    <span>{{patient.surName}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.email">Email</span></dt>
+                <dd>
+                    <span>{{patient.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.phone">Phone</span></dt>
+                <dd>
+                    <span>{{patient.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.mobile">Mobile</span></dt>
+                <dd>
+                    <span>{{patient.mobile}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.address">Address</span></dt>
+                <dd>
+                    <span>{{patient.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.insuranceMutual">Insurance Mutual</span></dt>
+                <dd>
+                    <span>{{patient.insuranceMutual}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.dni">Dni</span></dt>
+                <dd>
+                    <span>{{patient.dni}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.numberAfiliated">Number Afiliated</span></dt>
+                <dd>
+                    <span>{{patient.numberAfiliated}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.patient.note">Note</span></dt>
+                <dd>
+                    <span>{{patient.note}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/patient', patient.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

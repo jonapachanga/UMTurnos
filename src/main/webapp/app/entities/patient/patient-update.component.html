@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-patient-heading" jhiTranslate="umturnosApp.patient.home.createOrEditLabel">Create or edit a Patient</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!patient.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="patient.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="patient.name" required/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.surName" for="field_surName">Sur Name</label>
+                    <input type="text" class="form-control" name="surName" id="field_surName"
+                        [(ngModel)]="patient.surName" required/>
+                    <div [hidden]="!(editForm.controls.surName?.dirty && editForm.controls.surName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.surName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="patient.email" required/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="patient.phone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.mobile" for="field_mobile">Mobile</label>
+                    <input type="text" class="form-control" name="mobile" id="field_mobile"
+                        [(ngModel)]="patient.mobile" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.address" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                        [(ngModel)]="patient.address" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.insuranceMutual" for="field_insuranceMutual">Insurance Mutual</label>
+                    <input type="text" class="form-control" name="insuranceMutual" id="field_insuranceMutual"
+                        [(ngModel)]="patient.insuranceMutual" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.dni" for="field_dni">Dni</label>
+                    <input type="text" class="form-control" name="dni" id="field_dni"
+                        [(ngModel)]="patient.dni" required/>
+                    <div [hidden]="!(editForm.controls.dni?.dirty && editForm.controls.dni?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dni?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.numberAfiliated" for="field_numberAfiliated">Number Afiliated</label>
+                    <input type="text" class="form-control" name="numberAfiliated" id="field_numberAfiliated"
+                        [(ngModel)]="patient.numberAfiliated" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.patient.note" for="field_note">Note</label>
+                    <input type="text" class="form-control" name="note" id="field_note"
+                        [(ngModel)]="patient.note" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

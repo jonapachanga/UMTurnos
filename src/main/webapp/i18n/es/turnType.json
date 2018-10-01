@@ -1,0 +1,23 @@
+
+{
+    "umturnosApp": {
+        "turnType" : {
+            "home": {
+                "title": "Turn Types",
+                "createLabel": "Crear nuevo Turn Type",
+                "createOrEditLabel": "Crear o editar Turn Type"
+            },
+            "created": "Un nuevo Turn Type ha sido creado con el identificador {{ param }}",
+            "updated": "Un Turn Type ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Turn Type ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Turn Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Turn Type"
+            },
+            "name": "Name",
+            "turns": "Turns"
+        }
+    }
+}

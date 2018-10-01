@@ -1,0 +1,42 @@
+entity Turn(turns) {
+    dateAndHour ZonedDateTime required
+}
+entity Patient(patients) {
+	name String required,
+    surName String required,
+    email String required,
+    phone String,
+    mobile String,
+    address String,
+    insuranceMutual String,
+    dni String required,
+    numberAfiliated String,
+    note String,
+}
+
+entity Clinic(clinics) {
+	name String required,
+    email String required,
+    address String,
+    phone String,
+    website String,
+    note String
+}
+
+entity TurnType(turn_types) {
+	name String required
+}
+
+relationship ManyToOne {
+  Turn{turnType} to TurnType{turns},
+  Turn{clinic} to Clinic{turns},
+  Turn{patient} to Patient{turns}
+}
+
+relationship ManyToOne {
+  Turn{user} to User{turns}
+}
+
+paginate all with pagination
+service all with serviceImpl except TurnType
+

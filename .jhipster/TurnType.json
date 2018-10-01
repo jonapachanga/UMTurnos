@@ -1,0 +1,29 @@
+{
+    "name": "TurnType",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "turns",
+            "otherEntityName": "turn",
+            "otherEntityRelationshipName": "turnType"
+        }
+    ],
+    "changelogDate": "20181001224152",
+    "entityTableName": "turn_types",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

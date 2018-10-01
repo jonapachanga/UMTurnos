@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="clinic">
+            <h2><span jhiTranslate="umturnosApp.clinic.detail.title">Clinic</span> {{clinic.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="umturnosApp.clinic.name">Name</span></dt>
+                <dd>
+                    <span>{{clinic.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinic.email">Email</span></dt>
+                <dd>
+                    <span>{{clinic.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinic.address">Address</span></dt>
+                <dd>
+                    <span>{{clinic.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinic.phone">Phone</span></dt>
+                <dd>
+                    <span>{{clinic.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinic.website">Website</span></dt>
+                <dd>
+                    <span>{{clinic.website}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinic.note">Note</span></dt>
+                <dd>
+                    <span>{{clinic.note}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/clinic', clinic.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
