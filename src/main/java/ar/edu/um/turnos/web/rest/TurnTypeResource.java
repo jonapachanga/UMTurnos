@@ -2,7 +2,7 @@ package ar.edu.um.turnos.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import ar.edu.um.turnos.domain.TurnType;
-import ar.edu.um.turnos.repository.TurnTypeRepository;
+import ar.edu.um.turnos.service.TurnTypeService;
 import ar.edu.um.turnos.web.rest.errors.BadRequestAlertException;
 import ar.edu.um.turnos.web.rest.util.HeaderUtil;
 import ar.edu.um.turnos.web.rest.util.PaginationUtil;
@@ -34,10 +34,10 @@ public class TurnTypeResource {
 
     private static final String ENTITY_NAME = "turnType";
 
-    private final TurnTypeRepository turnTypeRepository;
+    private final TurnTypeService turnTypeService;
 
-    public TurnTypeResource(TurnTypeRepository turnTypeRepository) {
-        this.turnTypeRepository = turnTypeRepository;
+    public TurnTypeResource(TurnTypeService turnTypeService) {
+        this.turnTypeService = turnTypeService;
     }
 
     /**
@@ -54,7 +54,7 @@ public class TurnTypeResource {
         if (turnType.getId() != null) {
             throw new BadRequestAlertException("A new turnType cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        TurnType result = turnTypeRepository.save(turnType);
+        TurnType result = turnTypeService.save(turnType);
         return ResponseEntity.created(new URI("/api/turn-types/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -76,7 +76,7 @@ public class TurnTypeResource {
         if (turnType.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        TurnType result = turnTypeRepository.save(turnType);
+        TurnType result = turnTypeService.save(turnType);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, turnType.getId().toString()))
             .body(result);
@@ -92,7 +92,7 @@ public class TurnTypeResource {
     @Timed
     public ResponseEntity<List<TurnType>> getAllTurnTypes(Pageable pageable) {
         log.debug("REST request to get a page of TurnTypes");
-        Page<TurnType> page = turnTypeRepository.findAll(pageable);
+        Page<TurnType> page = turnTypeService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/turn-types");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -107,7 +107,7 @@ public class TurnTypeResource {
     @Timed
     public ResponseEntity<TurnType> getTurnType(@PathVariable Long id) {
         log.debug("REST request to get TurnType : {}", id);
-        Optional<TurnType> turnType = turnTypeRepository.findById(id);
+        Optional<TurnType> turnType = turnTypeService.findOne(id);
         return ResponseUtil.wrapOrNotFound(turnType);
     }
 
@@ -121,8 +121,7 @@ public class TurnTypeResource {
     @Timed
     public ResponseEntity<Void> deleteTurnType(@PathVariable Long id) {
         log.debug("REST request to delete TurnType : {}", id);
-
-        turnTypeRepository.deleteById(id);
+        turnTypeService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

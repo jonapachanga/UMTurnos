@@ -28,15 +28,15 @@ entity TurnType(turn_types) {
 }
 
 relationship ManyToOne {
-  Turn{turnType} to TurnType{turns},
-  Turn{clinic} to Clinic{turns},
-  Turn{patient} to Patient{turns}
+  Turn{turnType(name)} to TurnType{turns},
+  Turn{clinic(name)} to Clinic{turns},
+  Turn{patient(name)} to Patient{turns}
 }
 
 relationship ManyToOne {
-  Turn{user} to User{turns}
+  Turn{user(name)} to User{turns}
 }
 
 paginate all with pagination
-service all with serviceImpl except TurnType
+service all with serviceImpl
 

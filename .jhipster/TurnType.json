@@ -21,7 +21,7 @@
     "entityTableName": "turn_types",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",

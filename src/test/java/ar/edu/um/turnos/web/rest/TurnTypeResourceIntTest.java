@@ -4,6 +4,7 @@ import ar.edu.um.turnos.UmturnosApp;
 
 import ar.edu.um.turnos.domain.TurnType;
 import ar.edu.um.turnos.repository.TurnTypeRepository;
+import ar.edu.um.turnos.service.TurnTypeService;
 import ar.edu.um.turnos.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -44,6 +45,9 @@ public class TurnTypeResourceIntTest {
 
     @Autowired
     private TurnTypeRepository turnTypeRepository;
+    
+    @Autowired
+    private TurnTypeService turnTypeService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -64,7 +68,7 @@ public class TurnTypeResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TurnTypeResource turnTypeResource = new TurnTypeResource(turnTypeRepository);
+        final TurnTypeResource turnTypeResource = new TurnTypeResource(turnTypeService);
         this.restTurnTypeMockMvc = MockMvcBuilders.standaloneSetup(turnTypeResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -184,7 +188,7 @@ public class TurnTypeResourceIntTest {
     @Transactional
     public void updateTurnType() throws Exception {
         // Initialize the database
-        turnTypeRepository.saveAndFlush(turnType);
+        turnTypeService.save(turnType);
 
         int databaseSizeBeforeUpdate = turnTypeRepository.findAll().size();
 
@@ -229,7 +233,7 @@ public class TurnTypeResourceIntTest {
     @Transactional
     public void deleteTurnType() throws Exception {
         // Initialize the database
-        turnTypeRepository.saveAndFlush(turnType);
+        turnTypeService.save(turnType);
 
         int databaseSizeBeforeDelete = turnTypeRepository.findAll().size();
 

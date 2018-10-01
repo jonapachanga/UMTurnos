@@ -31,21 +31,21 @@
                     <label class="form-control-label" jhiTranslate="umturnosApp.turn.turnType" for="field_turnType">Turn Type</label>
                     <select class="form-control" id="field_turnType" name="turnType" [(ngModel)]="turn.turnType" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="turnTypeOption.id === turn.turnType?.id ? turn.turnType : turnTypeOption" *ngFor="let turnTypeOption of turntypes; trackBy: trackTurnTypeById">{{turnTypeOption.id}}</option>
+                        <option [ngValue]="turnTypeOption.id === turn.turnType?.id ? turn.turnType : turnTypeOption" *ngFor="let turnTypeOption of turntypes; trackBy: trackTurnTypeById">{{turnTypeOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="umturnosApp.turn.clinic" for="field_clinic">Clinic</label>
                     <select class="form-control" id="field_clinic" name="clinic" [(ngModel)]="turn.clinic" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="clinicOption.id === turn.clinic?.id ? turn.clinic : clinicOption" *ngFor="let clinicOption of clinics; trackBy: trackClinicById">{{clinicOption.id}}</option>
+                        <option [ngValue]="clinicOption.id === turn.clinic?.id ? turn.clinic : clinicOption" *ngFor="let clinicOption of clinics; trackBy: trackClinicById">{{clinicOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="umturnosApp.turn.patient" for="field_patient">Patient</label>
                     <select class="form-control" id="field_patient" name="patient" [(ngModel)]="turn.patient" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="patientOption.id === turn.patient?.id ? turn.patient : patientOption" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.id}}</option>
+                        <option [ngValue]="patientOption.id === turn.patient?.id ? turn.patient : patientOption" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">

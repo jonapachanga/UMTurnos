@@ -12,19 +12,19 @@
                 <dt><span jhiTranslate="umturnosApp.turn.turnType">Turn Type</span></dt>
                 <dd>
                     <div *ngIf="turn.turnType">
-                        <a [routerLink]="['/turn-type', turn.turnType?.id, 'view']">{{turn.turnType?.id}}</a>
+                        <a [routerLink]="['/turn-type', turn.turnType?.id, 'view']">{{turn.turnType?.name}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="umturnosApp.turn.clinic">Clinic</span></dt>
                 <dd>
                     <div *ngIf="turn.clinic">
-                        <a [routerLink]="['/clinic', turn.clinic?.id, 'view']">{{turn.clinic?.id}}</a>
+                        <a [routerLink]="['/clinic', turn.clinic?.id, 'view']">{{turn.clinic?.name}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="umturnosApp.turn.patient">Patient</span></dt>
                 <dd>
                     <div *ngIf="turn.patient">
-                        <a [routerLink]="['/patient', turn.patient?.id, 'view']">{{turn.patient?.id}}</a>
+                        <a [routerLink]="['/patient', turn.patient?.id, 'view']">{{turn.patient?.name}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="umturnosApp.turn.user">User</span></dt>

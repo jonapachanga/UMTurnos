@@ -14,19 +14,19 @@
             "relationshipType": "many-to-one",
             "relationshipName": "turnType",
             "otherEntityName": "turnType",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "clinic",
             "otherEntityName": "clinic",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "patient",
             "otherEntityName": "patient",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",
