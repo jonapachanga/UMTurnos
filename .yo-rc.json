@@ -1,0 +1,45 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ar.edu.um.turnos",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "monolith",
+    "baseName": "umturnos",
+    "packageName": "ar.edu.um.turnos",
+    "packageFolder": "ar/edu/um/turnos",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YzBmYjk2MzZmNjYwMmVhMzI3NWIzY2MwYTNlZTBhMjFiYzBhZjBjMTFiMmNkZDZlYzRiZTVlNjA2NjVlMzM5MzAwMjk4ZmM4YTczZjY0YjQ2YjM0ODcxMjVlMTg0NDBiODk3ZTVjYzBjNjljNzM0ZjAwNjZmMTgxOTlkNDM5Njk=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "gatling"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nav-element",
+        "version": "2.0.7"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": [
+      "es"
+    ]
+  }
+}
