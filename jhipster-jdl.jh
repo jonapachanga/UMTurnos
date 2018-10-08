@@ -2,8 +2,7 @@ entity Turn(turns) {
     dateAndHour ZonedDateTime required
 }
 entity Patient(patients) {
-	name String required,
-    surName String required,
+	fullName String required,
     email String required,
     phone String,
     mobile String,
@@ -23,18 +22,28 @@ entity Clinic(clinics) {
     note String
 }
 
+entity ClinicHistory(clinic_history) {
+	dateAndHour ZonedDateTime required,
+    issue String required,
+    history String required
+}
+
 entity TurnType(turn_types) {
 	name String required
 }
 
 relationship ManyToOne {
-  Turn{turnType(name)} to TurnType{turns},
-  Turn{clinic(name)} to Clinic{turns},
-  Turn{patient(name)} to Patient{turns}
+	ClinicHistory {patient(fullName) required} to Patient{clinicHistory}
 }
 
 relationship ManyToOne {
-  Turn{user(name)} to User{turns}
+	Turn{turnType(name)} to TurnType{turns},
+	Turn{clinic(name)} to Clinic{turns},
+	Turn{patient(name)} to Patient{turns}
+}
+
+relationship ManyToOne {
+	Turn{user(name)} to User{turns}
 }
 
 paginate all with pagination

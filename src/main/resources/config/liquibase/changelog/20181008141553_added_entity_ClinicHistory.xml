@@ -15,51 +15,32 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Patient.
+        Added the entity ClinicHistory.
     -->
-    <changeSet id="20181001224150-1" author="jhipster">
-        <createTable tableName="patients">
+    <changeSet id="20181008141553-1" author="jhipster">
+        <createTable tableName="clinic_history">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="full_name" type="varchar(255)">
+            <column name="date_and_hour" type="datetime">
                 <constraints nullable="false" />
             </column>
 
-            <column name="email" type="varchar(255)">
+            <column name="issue" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
-            <column name="phone" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="mobile" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="address" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="insurance_mutual" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="dni" type="varchar(255)">
+            <column name="history" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
-            <column name="number_afiliated" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="note" type="varchar(255)">
-                <constraints nullable="true" />
+            <column name="patient_id" type="bigint">
+                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="clinic_history" columnName="date_and_hour" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

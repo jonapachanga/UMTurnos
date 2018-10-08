@@ -1,9 +1,9 @@
+import { IClinicHistory } from 'app/shared/model//clinic-history.model';
 import { ITurn } from 'app/shared/model//turn.model';
 
 export interface IPatient {
     id?: number;
-    name?: string;
-    surName?: string;
+    fullName?: string;
     email?: string;
     phone?: string;
     mobile?: string;
@@ -12,14 +12,14 @@ export interface IPatient {
     dni?: string;
     numberAfiliated?: string;
     note?: string;
+    clinicHistories?: IClinicHistory[];
     turns?: ITurn[];
 }
 
 export class Patient implements IPatient {
     constructor(
         public id?: number,
-        public name?: string,
-        public surName?: string,
+        public fullName?: string,
         public email?: string,
         public phone?: string,
         public mobile?: string,
@@ -28,6 +28,7 @@ export class Patient implements IPatient {
         public dni?: string,
         public numberAfiliated?: string,
         public note?: string,
+        public clinicHistories?: IClinicHistory[],
         public turns?: ITurn[]
     ) {}
 }

@@ -32,7 +32,7 @@
             "relationshipType": "many-to-one",
             "relationshipName": "user",
             "otherEntityName": "user",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "changelogDate": "20181001224149",

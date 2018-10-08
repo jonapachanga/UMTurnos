@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="clinicHistory">
+            <h2><span jhiTranslate="umturnosApp.clinicHistory.detail.title">Clinic History</span> {{clinicHistory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="umturnosApp.clinicHistory.dateAndHour">Date And Hour</span></dt>
+                <dd>
+                    <span>{{clinicHistory.dateAndHour}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinicHistory.issue">Issue</span></dt>
+                <dd>
+                    <span>{{clinicHistory.issue}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinicHistory.history">History</span></dt>
+                <dd>
+                    <span>{{clinicHistory.history}}</span>
+                </dd>
+                <dt><span jhiTranslate="umturnosApp.clinicHistory.patient">Patient</span></dt>
+                <dd>
+                    <div *ngIf="clinicHistory.patient">
+                        <a [routerLink]="['/patient', clinicHistory.patient?.id, 'view']">{{clinicHistory.patient?.fullName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/clinic-history', clinicHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

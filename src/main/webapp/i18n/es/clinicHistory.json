@@ -1,0 +1,25 @@
+
+{
+    "umturnosApp": {
+        "clinicHistory" : {
+            "home": {
+                "title": "Clinic Histories",
+                "createLabel": "Crear nuevo Clinic History",
+                "createOrEditLabel": "Crear o editar Clinic History"
+            },
+            "created": "Un nuevo Clinic History ha sido creado con el identificador {{ param }}",
+            "updated": "Un Clinic History ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Clinic History ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Clinic History {{ id }}?"
+            },
+            "detail": {
+                "title": "Clinic History"
+            },
+            "dateAndHour": "Date And Hour",
+            "issue": "Issue",
+            "history": "History",
+            "patient": "Patient"
+        }
+    }
+}

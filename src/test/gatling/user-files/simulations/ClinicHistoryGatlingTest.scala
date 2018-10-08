@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Patient entity.
+ * Performance test for the ClinicHistory entity.
  */
-class PatientGatlingTest extends Simulation {
+class ClinicHistoryGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -42,7 +42,7 @@ class PatientGatlingTest extends Simulation {
         "Authorization" -> "${access_token}"
     )
 
-    val scn = scenario("Test the Patient entity")
+    val scn = scenario("Test the ClinicHistory entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -60,26 +60,26 @@ class PatientGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all patients")
-            .get("/api/patients")
+            exec(http("Get all clinicHistories")
+            .get("/api/clinic-histories")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new patient")
-            .post("/api/patients")
+            .exec(http("Create new clinicHistory")
+            .post("/api/clinic-histories")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "fullName":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "phone":"SAMPLE_TEXT", "mobile":"SAMPLE_TEXT", "address":"SAMPLE_TEXT", "insuranceMutual":"SAMPLE_TEXT", "dni":"SAMPLE_TEXT", "numberAfiliated":"SAMPLE_TEXT", "note":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "dateAndHour":"2020-01-01T00:00:00.000Z", "issue":"SAMPLE_TEXT", "history":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_patient_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_clinicHistory_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created patient")
-                .get("${new_patient_url}")
+                exec(http("Get created clinicHistory")
+                .get("${new_clinicHistory_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created patient")
-            .delete("${new_patient_url}")
+            .exec(http("Delete created clinicHistory")
+            .delete("${new_clinicHistory_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

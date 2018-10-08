@@ -2,14 +2,7 @@
     "name": "Patient",
     "fields": [
         {
-            "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "surName",
+            "fieldName": "fullName",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -55,6 +48,12 @@
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "clinicHistory",
+            "otherEntityName": "clinicHistory",
+            "otherEntityRelationshipName": "patient"
+        },
         {
             "relationshipType": "one-to-many",
             "relationshipName": "turns",

@@ -16,8 +16,7 @@
             "detail": {
                 "title": "Patient"
             },
-            "name": "Name",
-            "surName": "Sur Name",
+            "fullName": "Full Name",
             "email": "Email",
             "phone": "Phone",
             "mobile": "Mobile",
@@ -26,6 +25,7 @@
             "dni": "Dni",
             "numberAfiliated": "Number Afiliated",
             "note": "Note",
+            "clinicHistory": "Clinic History",
             "turns": "Turns"
         }
     }

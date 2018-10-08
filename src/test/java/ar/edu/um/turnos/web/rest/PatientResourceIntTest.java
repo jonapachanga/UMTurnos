@@ -40,11 +40,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = UmturnosApp.class)
 public class PatientResourceIntTest {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_SUR_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_SUR_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_FULL_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_FULL_NAME = "BBBBBBBBBB";
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
@@ -111,8 +108,7 @@ public class PatientResourceIntTest {
      */
     public static Patient createEntity(EntityManager em) {
         Patient patient = new Patient()
-            .name(DEFAULT_NAME)
-            .surName(DEFAULT_SUR_NAME)
+            .fullName(DEFAULT_FULL_NAME)
             .email(DEFAULT_EMAIL)
             .phone(DEFAULT_PHONE)
             .mobile(DEFAULT_MOBILE)
@@ -144,8 +140,7 @@ public class PatientResourceIntTest {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeCreate + 1);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testPatient.getSurName()).isEqualTo(DEFAULT_SUR_NAME);
+        assertThat(testPatient.getFullName()).isEqualTo(DEFAULT_FULL_NAME);
         assertThat(testPatient.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testPatient.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testPatient.getMobile()).isEqualTo(DEFAULT_MOBILE);
@@ -177,28 +172,10 @@ public class PatientResourceIntTest {
 
     @Test
     @Transactional
-    public void checkNameIsRequired() throws Exception {
+    public void checkFullNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = patientRepository.findAll().size();
         // set the field null
-        patient.setName(null);
-
-        // Create the Patient, which fails.
-
-        restPatientMockMvc.perform(post("/api/patients")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(patient)))
-            .andExpect(status().isBadRequest());
-
-        List<Patient> patientList = patientRepository.findAll();
-        assertThat(patientList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkSurNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = patientRepository.findAll().size();
-        // set the field null
-        patient.setSurName(null);
+        patient.setFullName(null);
 
         // Create the Patient, which fails.
 
@@ -258,8 +235,7 @@ public class PatientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(patient.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].surName").value(hasItem(DEFAULT_SUR_NAME.toString())))
+            .andExpect(jsonPath("$.[*].fullName").value(hasItem(DEFAULT_FULL_NAME.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
             .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE.toString())))
@@ -281,8 +257,7 @@ public class PatientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(patient.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.surName").value(DEFAULT_SUR_NAME.toString()))
+            .andExpect(jsonPath("$.fullName").value(DEFAULT_FULL_NAME.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
             .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE.toString()))
@@ -314,8 +289,7 @@ public class PatientResourceIntTest {
         // Disconnect from session so that the updates on updatedPatient are not directly saved in db
         em.detach(updatedPatient);
         updatedPatient
-            .name(UPDATED_NAME)
-            .surName(UPDATED_SUR_NAME)
+            .fullName(UPDATED_FULL_NAME)
             .email(UPDATED_EMAIL)
             .phone(UPDATED_PHONE)
             .mobile(UPDATED_MOBILE)
@@ -334,8 +308,7 @@ public class PatientResourceIntTest {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testPatient.getSurName()).isEqualTo(UPDATED_SUR_NAME);
+        assertThat(testPatient.getFullName()).isEqualTo(UPDATED_FULL_NAME);
         assertThat(testPatient.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPatient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testPatient.getMobile()).isEqualTo(UPDATED_MOBILE);

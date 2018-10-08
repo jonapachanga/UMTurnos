@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-clinic-history-heading" jhiTranslate="umturnosApp.clinicHistory.home.createOrEditLabel">Create or edit a Clinic History</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!clinicHistory.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="clinicHistory.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.clinicHistory.dateAndHour" for="field_dateAndHour">Date And Hour</label>
+                    <div class="d-flex">
+                        <input id="field_dateAndHour" type="datetime-local" class="form-control" name="dateAndHour" [(ngModel)]="dateAndHour"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateAndHour?.dirty && editForm.controls.dateAndHour?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateAndHour?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dateAndHour?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.clinicHistory.issue" for="field_issue">Issue</label>
+                    <input type="text" class="form-control" name="issue" id="field_issue"
+                        [(ngModel)]="clinicHistory.issue" required/>
+                    <div [hidden]="!(editForm.controls.issue?.dirty && editForm.controls.issue?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.issue?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.clinicHistory.history" for="field_history">History</label>
+                    <input type="text" class="form-control" name="history" id="field_history"
+                        [(ngModel)]="clinicHistory.history" required/>
+                    <div [hidden]="!(editForm.controls.history?.dirty && editForm.controls.history?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.history?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="umturnosApp.clinicHistory.patient" for="field_patient">Patient</label>
+                    <select class="form-control" id="field_patient" name="patient" [(ngModel)]="clinicHistory.patient"  required>
+                        <option *ngIf="!editForm.value.patient" [ngValue]="null" selected></option>
+                        <option [ngValue]="patientOption.id === clinicHistory.patient?.id ? clinicHistory.patient : patientOption" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.fullName}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.patient?.dirty && editForm.controls.patient?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.patient?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

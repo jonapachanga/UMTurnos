@@ -1,0 +1,44 @@
+{
+    "name": "ClinicHistory",
+    "fields": [
+        {
+            "fieldName": "dateAndHour",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "issue",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "history",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "otherEntityField": "fullName"
+        }
+    ],
+    "changelogDate": "20181008141553",
+    "entityTableName": "clinic_history",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

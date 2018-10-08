@@ -1,66 +1,54 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="umturnosApp.turn.home.title">Turns</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-turn" [routerLink]="['/turn/new']">
+        <span jhiTranslate="umturnosApp.clinicHistory.home.title">Clinic Histories</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-clinic-history" [routerLink]="['/clinic-history/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="umturnosApp.turn.home.createLabel">
-            Create new Turn
+            <span  jhiTranslate="umturnosApp.clinicHistory.home.createLabel">
+            Create new Clinic History
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="turns">
+    <div class="table-responsive" *ngIf="clinicHistories">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="dateAndHour"><span jhiTranslate="umturnosApp.turn.dateAndHour">Date And Hour</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="turnType.name"><span jhiTranslate="umturnosApp.turn.turnType">Turn Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="clinic.name"><span jhiTranslate="umturnosApp.turn.clinic">Clinic</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="patient.name"><span jhiTranslate="umturnosApp.turn.patient">Patient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.name"><span jhiTranslate="umturnosApp.turn.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateAndHour"><span jhiTranslate="umturnosApp.clinicHistory.dateAndHour">Date And Hour</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="issue"><span jhiTranslate="umturnosApp.clinicHistory.issue">Issue</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="history"><span jhiTranslate="umturnosApp.clinicHistory.history">History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="patient.fullName"><span jhiTranslate="umturnosApp.clinicHistory.patient">Patient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let turn of turns ;trackBy: trackId">
-                <td><a [routerLink]="['/turn', turn.id, 'view' ]">{{turn.id}}</a></td>
-                <td>{{turn.dateAndHour | date:'medium'}}</td>
+            <tr *ngFor="let clinicHistory of clinicHistories ;trackBy: trackId">
+                <td><a [routerLink]="['/clinic-history', clinicHistory.id, 'view' ]">{{clinicHistory.id}}</a></td>
+                <td>{{clinicHistory.dateAndHour | date:'medium'}}</td>
+                <td>{{clinicHistory.issue}}</td>
+                <td>{{clinicHistory.history}}</td>
                 <td>
-                    <div *ngIf="turn.turnType">
-                        <a [routerLink]="['../turn-type', turn.turnType?.id, 'view' ]" >{{turn.turnType?.name}}</a>
+                    <div *ngIf="clinicHistory.patient">
+                        <a [routerLink]="['../patient', clinicHistory.patient?.id, 'view' ]" >{{clinicHistory.patient?.fullName}}</a>
                     </div>
-                </td>
-                <td>
-                    <div *ngIf="turn.clinic">
-                        <a [routerLink]="['../clinic', turn.clinic?.id, 'view' ]" >{{turn.clinic?.name}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="turn.patient">
-                        <a [routerLink]="['../patient', turn.patient?.id, 'view' ]" >{{turn.patient?.name}}</a>
-                    </div>
-                </td>
-                <td>
-                    {{turn.user?.name}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['/turn', turn.id, 'view' ]"
+                                [routerLink]="['/clinic-history', clinicHistory.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/turn', turn.id, 'edit']"
+                                [routerLink]="['/clinic-history', clinicHistory.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'turn/'+ turn.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'clinic-history/'+ clinicHistory.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
@@ -73,7 +61,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="turns && turns.length">
+    <div *ngIf="clinicHistories && clinicHistories.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

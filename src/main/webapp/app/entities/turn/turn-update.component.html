@@ -52,7 +52,7 @@
                     <label class="form-control-label" jhiTranslate="umturnosApp.turn.user" for="field_user">User</label>
                     <select class="form-control" id="field_user" name="user" [(ngModel)]="turn.user" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === turn.user?.id ? turn.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="userOption.id === turn.user?.id ? turn.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.name}}</option>
                     </select>
                 </div>
             </div>

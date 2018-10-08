@@ -9,7 +9,9 @@
     <include file="config/liquibase/changelog/20181001224150_added_entity_Patient.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181001224151_added_entity_Clinic.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181001224152_added_entity_TurnType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181008141553_added_entity_ClinicHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20181001224149_added_entity_constraints_Turn.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181008141553_added_entity_constraints_ClinicHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

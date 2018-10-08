@@ -27,12 +27,8 @@ public class Patient implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @NotNull
-    @Column(name = "sur_name", nullable = false)
-    private String surName;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
     @NotNull
     @Column(name = "email", nullable = false)
@@ -62,6 +58,10 @@ public class Patient implements Serializable {
 
     @OneToMany(mappedBy = "patient")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ClinicHistory> clinicHistories = new HashSet<>();
+
+    @OneToMany(mappedBy = "patient")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Turn> turns = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -73,30 +73,17 @@ public class Patient implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public Patient name(String name) {
-        this.name = name;
+    public Patient fullName(String fullName) {
+        this.fullName = fullName;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurName() {
-        return surName;
-    }
-
-    public Patient surName(String surName) {
-        this.surName = surName;
-        return this;
-    }
-
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -203,6 +190,31 @@ public class Patient implements Serializable {
         this.note = note;
     }
 
+    public Set<ClinicHistory> getClinicHistories() {
+        return clinicHistories;
+    }
+
+    public Patient clinicHistories(Set<ClinicHistory> clinicHistories) {
+        this.clinicHistories = clinicHistories;
+        return this;
+    }
+
+    public Patient addClinicHistory(ClinicHistory clinicHistory) {
+        this.clinicHistories.add(clinicHistory);
+        clinicHistory.setPatient(this);
+        return this;
+    }
+
+    public Patient removeClinicHistory(ClinicHistory clinicHistory) {
+        this.clinicHistories.remove(clinicHistory);
+        clinicHistory.setPatient(null);
+        return this;
+    }
+
+    public void setClinicHistories(Set<ClinicHistory> clinicHistories) {
+        this.clinicHistories = clinicHistories;
+    }
+
     public Set<Turn> getTurns() {
         return turns;
     }
@@ -253,8 +265,7 @@ public class Patient implements Serializable {
     public String toString() {
         return "Patient{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", surName='" + getSurName() + "'" +
+            ", fullName='" + getFullName() + "'" +
             ", email='" + getEmail() + "'" +
             ", phone='" + getPhone() + "'" +
             ", mobile='" + getMobile() + "'" +
