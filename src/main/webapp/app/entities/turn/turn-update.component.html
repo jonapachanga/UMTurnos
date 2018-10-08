@@ -45,14 +45,14 @@
                     <label class="form-control-label" jhiTranslate="umturnosApp.turn.patient" for="field_patient">Patient</label>
                     <select class="form-control" id="field_patient" name="patient" [(ngModel)]="turn.patient" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="patientOption.id === turn.patient?.id ? turn.patient : patientOption" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.name}}</option>
+                        <option [ngValue]="patientOption.id === turn.patient?.id ? turn.patient : patientOption" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.fullName}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="umturnosApp.turn.user" for="field_user">User</label>
                     <select class="form-control" id="field_user" name="user" [(ngModel)]="turn.user" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === turn.user?.id ? turn.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.name}}</option>
+                        <option [ngValue]="userOption.id === turn.user?.id ? turn.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
                     </select>
                 </div>
             </div>

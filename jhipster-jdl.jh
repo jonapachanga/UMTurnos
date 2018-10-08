@@ -25,7 +25,7 @@ entity Clinic(clinics) {
 entity ClinicHistory(clinic_history) {
 	dateAndHour ZonedDateTime required,
     issue String required,
-    history String required
+    history String required maxlength(65535)
 }
 
 entity TurnType(turn_types) {
@@ -37,13 +37,13 @@ relationship ManyToOne {
 }
 
 relationship ManyToOne {
-	Turn{turnType(name)} to TurnType{turns},
-	Turn{clinic(name)} to Clinic{turns},
-	Turn{patient(name)} to Patient{turns}
+	Turn{turnType(name)} to TurnType{turn},
+	Turn{clinic(name)} to Clinic{turn},
+	Turn{patient(fullName)} to Patient{turn}
 }
 
 relationship ManyToOne {
-	Turn{user(name)} to User{turns}
+	Turn{user(login)} to User{turn}
 }
 
 paginate all with pagination

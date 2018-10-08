@@ -26,13 +26,13 @@
             "relationshipType": "many-to-one",
             "relationshipName": "patient",
             "otherEntityName": "patient",
-            "otherEntityField": "name"
+            "otherEntityField": "fullName"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "user",
             "otherEntityName": "user",
-            "otherEntityField": "name"
+            "otherEntityField": "login"
         }
     ],
     "changelogDate": "20181001224149",

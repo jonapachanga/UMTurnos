@@ -18,8 +18,8 @@
             <th jhiSortBy="dateAndHour"><span jhiTranslate="umturnosApp.turn.dateAndHour">Date And Hour</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="turnType.name"><span jhiTranslate="umturnosApp.turn.turnType">Turn Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="clinic.name"><span jhiTranslate="umturnosApp.turn.clinic">Clinic</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="patient.name"><span jhiTranslate="umturnosApp.turn.patient">Patient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.name"><span jhiTranslate="umturnosApp.turn.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="patient.fullName"><span jhiTranslate="umturnosApp.turn.patient">Patient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="umturnosApp.turn.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -39,11 +39,11 @@
                 </td>
                 <td>
                     <div *ngIf="turn.patient">
-                        <a [routerLink]="['../patient', turn.patient?.id, 'view' ]" >{{turn.patient?.name}}</a>
+                        <a [routerLink]="['../patient', turn.patient?.id, 'view' ]" >{{turn.patient?.fullName}}</a>
                     </div>
                 </td>
                 <td>
-                    {{turn.user?.name}}
+                    {{turn.user?.login}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

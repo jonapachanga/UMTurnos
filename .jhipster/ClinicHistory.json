@@ -19,8 +19,10 @@
             "fieldName": "history",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 65535
         }
     ],
     "relationships": [

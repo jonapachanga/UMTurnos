@@ -146,13 +146,13 @@ public class Clinic implements Serializable {
         return this;
     }
 
-    public Clinic addTurns(Turn turn) {
+    public Clinic addTurn(Turn turn) {
         this.turns.add(turn);
         turn.setClinic(this);
         return this;
     }
 
-    public Clinic removeTurns(Turn turn) {
+    public Clinic removeTurn(Turn turn) {
         this.turns.remove(turn);
         turn.setClinic(null);
         return this;

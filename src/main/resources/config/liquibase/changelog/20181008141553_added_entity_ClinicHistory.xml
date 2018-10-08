@@ -30,7 +30,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="history" type="varchar(255)">
+            <column name="history" type="varchar(65535)">
                 <constraints nullable="false" />
             </column>
 

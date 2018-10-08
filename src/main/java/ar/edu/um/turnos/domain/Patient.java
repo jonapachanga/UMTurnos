@@ -224,13 +224,13 @@ public class Patient implements Serializable {
         return this;
     }
 
-    public Patient addTurns(Turn turn) {
+    public Patient addTurn(Turn turn) {
         this.turns.add(turn);
         turn.setPatient(this);
         return this;
     }
 
-    public Patient removeTurns(Turn turn) {
+    public Patient removeTurn(Turn turn) {
         this.turns.remove(turn);
         turn.setPatient(null);
         return this;

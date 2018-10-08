@@ -34,7 +34,8 @@ public class ClinicHistory implements Serializable {
     private String issue;
 
     @NotNull
-    @Column(name = "history", nullable = false)
+    @Size(max = 65535)
+    @Column(name = "history", length = 65535, nullable = false)
     private String history;
 
     @ManyToOne(optional = false)

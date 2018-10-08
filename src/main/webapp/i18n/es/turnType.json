@@ -17,7 +17,7 @@
                 "title": "Turn Type"
             },
             "name": "Name",
-            "turns": "Turns"
+            "turn": "Turn"
         }
     }
 }

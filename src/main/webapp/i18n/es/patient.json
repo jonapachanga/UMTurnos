@@ -26,7 +26,7 @@
             "numberAfiliated": "Number Afiliated",
             "note": "Note",
             "clinicHistory": "Clinic History",
-            "turns": "Turns"
+            "turn": "Turn"
         }
     }
 }

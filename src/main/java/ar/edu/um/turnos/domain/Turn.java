@@ -1,6 +1,7 @@
 package ar.edu.um.turnos.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -27,6 +28,7 @@ public class Turn implements Serializable {
 
     @NotNull
     @Column(name = "date_and_hour", nullable = false)
+    @DateTimeFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private ZonedDateTime dateAndHour;
 
     @ManyToOne

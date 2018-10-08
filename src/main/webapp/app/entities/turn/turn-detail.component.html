@@ -24,12 +24,12 @@
                 <dt><span jhiTranslate="umturnosApp.turn.patient">Patient</span></dt>
                 <dd>
                     <div *ngIf="turn.patient">
-                        <a [routerLink]="['/patient', turn.patient?.id, 'view']">{{turn.patient?.name}}</a>
+                        <a [routerLink]="['/patient', turn.patient?.id, 'view']">{{turn.patient?.fullName}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="umturnosApp.turn.user">User</span></dt>
                 <dd>
-                    {{turn.user?.name}}
+                    {{turn.user?.login}}
                 </dd>
             </dl>
 

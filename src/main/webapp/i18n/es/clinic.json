@@ -22,7 +22,7 @@
             "phone": "Phone",
             "website": "Website",
             "note": "Note",
-            "turns": "Turns"
+            "turn": "Turn"
         }
     }
 }

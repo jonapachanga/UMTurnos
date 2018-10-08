@@ -65,13 +65,13 @@ public class TurnType implements Serializable {
         return this;
     }
 
-    public TurnType addTurns(Turn turn) {
+    public TurnType addTurn(Turn turn) {
         this.turns.add(turn);
         turn.setTurnType(this);
         return this;
     }
 
-    public TurnType removeTurns(Turn turn) {
+    public TurnType removeTurn(Turn turn) {
         this.turns.remove(turn);
         turn.setTurnType(null);
         return this;

@@ -56,7 +56,7 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "turns",
+            "relationshipName": "turn",
             "otherEntityName": "turn",
             "otherEntityRelationshipName": "patient"
         }
