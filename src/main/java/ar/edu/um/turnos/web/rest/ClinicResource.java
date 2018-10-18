@@ -119,6 +119,7 @@ public class ClinicResource {
      */
     @DeleteMapping("/clinics/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<Void> deleteClinic(@PathVariable Long id) {
         log.debug("REST request to delete Clinic : {}", id);
         clinicService.delete(id);
