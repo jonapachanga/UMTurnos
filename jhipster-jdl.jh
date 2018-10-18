@@ -10,7 +10,7 @@ entity Patient(patients) {
     insuranceMutual String,
     dni String required,
     numberAfiliated String,
-    note String,
+    note String
 }
 
 entity Clinic(clinics) {
