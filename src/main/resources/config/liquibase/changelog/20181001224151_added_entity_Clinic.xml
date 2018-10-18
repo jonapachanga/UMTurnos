@@ -51,5 +51,11 @@
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
-    
+    <changeSet id="00000000000003" author="Natube">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/clinics.csv"
+                  separator=";"
+                  tableName="clinics">
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
