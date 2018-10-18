@@ -1,3 +1,1 @@
-describe('CalendarComponent Tests', () => {
-
-});
+describe('CalendarComponent Tests', () => {});

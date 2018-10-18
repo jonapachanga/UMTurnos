@@ -32,7 +32,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         UmturnosHomeModule,
         UmturnosAccountModule,
         UmturnosEntityModule,
-        UmturnosAppCalendarModule,
+        UmturnosAppCalendarModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],

@@ -138,11 +138,4 @@
                                  referencedColumnNames="event_id"
                                  referencedTableName="jhi_persistent_audit_event"/>
     </changeSet>
-    <changeSet id="00000000000003" author="Natube">
-        <loadData encoding="UTF-8"
-                  file="config/liquibase/clinics.csv"
-                  separator=";"
-                  tableName="clinics">
-        </loadData>
-    </changeSet>
 </databaseChangeLog>
