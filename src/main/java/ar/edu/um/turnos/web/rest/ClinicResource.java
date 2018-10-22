@@ -15,6 +15,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ar.edu.um.turnos.security.AuthoritiesConstants;
+//import org.springframewirk.security.access.annotation.Secured;
+import org.springframework.security.access.annotation.Secured;
+
+
+import java.lang.String;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -49,6 +55,7 @@ public class ClinicResource {
      */
     @PostMapping("/clinics")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
     public ResponseEntity<Clinic> createClinic(@Valid @RequestBody Clinic clinic) throws URISyntaxException {
         log.debug("REST request to save Clinic : {}", clinic);
         if (clinic.getId() != null) {
@@ -71,6 +78,7 @@ public class ClinicResource {
      */
     @PutMapping("/clinics")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
     public ResponseEntity<Clinic> updateClinic(@Valid @RequestBody Clinic clinic) throws URISyntaxException {
         log.debug("REST request to update Clinic : {}", clinic);
         if (clinic.getId() == null) {
@@ -90,6 +98,7 @@ public class ClinicResource {
      */
     @GetMapping("/clinics")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
     public ResponseEntity<List<Clinic>> getAllClinics(Pageable pageable) {
         log.debug("REST request to get a page of Clinics");
         Page<Clinic> page = clinicService.findAll(pageable);
@@ -105,6 +114,7 @@ public class ClinicResource {
      */
     @GetMapping("/clinics/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
     public ResponseEntity<Clinic> getClinic(@PathVariable Long id) {
         log.debug("REST request to get Clinic : {}", id);
         Optional<Clinic> clinic = clinicService.findOne(id);
@@ -119,6 +129,7 @@ public class ClinicResource {
      */
     @DeleteMapping("/clinics/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
     public ResponseEntity<Void> deleteClinic(@PathVariable Long id) {
         log.debug("REST request to delete Clinic : {}", id);
         clinicService.delete(id);
