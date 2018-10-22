@@ -63,6 +63,11 @@ classes/
 out/
 
 ######################
+# JHipster
+######################
+src/main/resources/.h2.server.properties
+
+######################
 # Visual Studio Code
 ######################
 .vscode/
