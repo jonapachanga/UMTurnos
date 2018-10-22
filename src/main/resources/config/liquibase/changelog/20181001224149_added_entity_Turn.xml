@@ -45,7 +45,14 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="turns" columnName="date_and_hour" columnDataType="datetime"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+    <changeSet id="00000000000004" author="Natube">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/turns.csv"
+                  separator=";"
+                  tableName="turns">
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
