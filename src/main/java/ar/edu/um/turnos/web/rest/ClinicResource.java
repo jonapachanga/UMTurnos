@@ -55,7 +55,7 @@ public class ClinicResource {
      */
     @PostMapping("/clinics")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<Clinic> createClinic(@Valid @RequestBody Clinic clinic) throws URISyntaxException {
         log.debug("REST request to save Clinic : {}", clinic);
         if (clinic.getId() != null) {
@@ -78,7 +78,7 @@ public class ClinicResource {
      */
     @PutMapping("/clinics")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<Clinic> updateClinic(@Valid @RequestBody Clinic clinic) throws URISyntaxException {
         log.debug("REST request to update Clinic : {}", clinic);
         if (clinic.getId() == null) {
@@ -98,7 +98,7 @@ public class ClinicResource {
      */
     @GetMapping("/clinics")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<List<Clinic>> getAllClinics(Pageable pageable) {
         log.debug("REST request to get a page of Clinics");
         Page<Clinic> page = clinicService.findAll(pageable);
@@ -114,7 +114,7 @@ public class ClinicResource {
      */
     @GetMapping("/clinics/{id}")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR })
     public ResponseEntity<Clinic> getClinic(@PathVariable Long id) {
         log.debug("REST request to get Clinic : {}", id);
         Optional<Clinic> clinic = clinicService.findOne(id);
@@ -129,7 +129,7 @@ public class ClinicResource {
      */
     @DeleteMapping("/clinics/{id}")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY})
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<Void> deleteClinic(@PathVariable Long id) {
         log.debug("REST request to delete Clinic : {}", id);
         clinicService.delete(id);
