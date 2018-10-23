@@ -34,7 +34,7 @@ export const clinicHistoryRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR'],
             defaultSort: 'id,asc',
             pageTitle: 'umturnosApp.clinicHistory.home.title'
         },
@@ -47,7 +47,7 @@ export const clinicHistoryRoute: Routes = [
             clinicHistory: ClinicHistoryResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR'],
             pageTitle: 'umturnosApp.clinicHistory.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -59,7 +59,7 @@ export const clinicHistoryRoute: Routes = [
             clinicHistory: ClinicHistoryResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR'],
             pageTitle: 'umturnosApp.clinicHistory.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -71,7 +71,7 @@ export const clinicHistoryRoute: Routes = [
             clinicHistory: ClinicHistoryResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR'],
             pageTitle: 'umturnosApp.clinicHistory.home.title'
         },
         canActivate: [UserRouteAccessService]

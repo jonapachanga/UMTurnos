@@ -39,7 +39,8 @@
 
             <button type="button"
                     [routerLink]="['/clinic', clinic.id, 'edit']"
-                    class="btn btn-primary">
+                    class="btn btn-primary"
+                    *jhiHasAnyAuthority="'ROLE_DOCTOR'">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
