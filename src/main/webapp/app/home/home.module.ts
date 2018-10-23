@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { EditorModule } from "@tinymce/tinymce-angular";
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { UmturnosSharedModule } from 'app/shared';
 import { HOME_ROUTE, HomeComponent } from './';
