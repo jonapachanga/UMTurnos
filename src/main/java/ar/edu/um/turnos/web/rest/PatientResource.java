@@ -1,5 +1,6 @@
 package ar.edu.um.turnos.web.rest;
 
+import ar.edu.um.turnos.security.AuthoritiesConstants;
 import com.codahale.metrics.annotation.Timed;
 import ar.edu.um.turnos.domain.Patient;
 import ar.edu.um.turnos.service.PatientService;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,6 +51,7 @@ public class PatientResource {
      */
     @PostMapping("/patients")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Patient> createPatient(@Valid @RequestBody Patient patient) throws URISyntaxException {
         log.debug("REST request to save Patient : {}", patient);
         if (patient.getId() != null) {
@@ -71,6 +74,7 @@ public class PatientResource {
      */
     @PutMapping("/patients")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Patient> updatePatient(@Valid @RequestBody Patient patient) throws URISyntaxException {
         log.debug("REST request to update Patient : {}", patient);
         if (patient.getId() == null) {
@@ -90,6 +94,7 @@ public class PatientResource {
      */
     @GetMapping("/patients")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<List<Patient>> getAllPatients(Pageable pageable) {
         log.debug("REST request to get a page of Patients");
         Page<Patient> page = patientService.findAll(pageable);
@@ -105,6 +110,7 @@ public class PatientResource {
      */
     @GetMapping("/patients/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Patient> getPatient(@PathVariable Long id) {
         log.debug("REST request to get Patient : {}", id);
         Optional<Patient> patient = patientService.findOne(id);
@@ -119,6 +125,7 @@ public class PatientResource {
      */
     @DeleteMapping("/patients/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
         log.debug("REST request to delete Patient : {}", id);
         patientService.delete(id);

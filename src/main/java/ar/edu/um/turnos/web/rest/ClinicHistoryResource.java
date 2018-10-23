@@ -1,5 +1,6 @@
 package ar.edu.um.turnos.web.rest;
 
+import ar.edu.um.turnos.security.AuthoritiesConstants;
 import com.codahale.metrics.annotation.Timed;
 import ar.edu.um.turnos.domain.ClinicHistory;
 import ar.edu.um.turnos.service.ClinicHistoryService;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,6 +51,7 @@ public class ClinicHistoryResource {
      */
     @PostMapping("/clinic-histories")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<ClinicHistory> createClinicHistory(@Valid @RequestBody ClinicHistory clinicHistory) throws URISyntaxException {
         log.debug("REST request to save ClinicHistory : {}", clinicHistory);
         if (clinicHistory.getId() != null) {
@@ -71,6 +74,7 @@ public class ClinicHistoryResource {
      */
     @PutMapping("/clinic-histories")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<ClinicHistory> updateClinicHistory(@Valid @RequestBody ClinicHistory clinicHistory) throws URISyntaxException {
         log.debug("REST request to update ClinicHistory : {}", clinicHistory);
         if (clinicHistory.getId() == null) {
@@ -90,6 +94,7 @@ public class ClinicHistoryResource {
      */
     @GetMapping("/clinic-histories")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<List<ClinicHistory>> getAllClinicHistories(Pageable pageable) {
         log.debug("REST request to get a page of ClinicHistories");
         Page<ClinicHistory> page = clinicHistoryService.findAll(pageable);
@@ -105,6 +110,7 @@ public class ClinicHistoryResource {
      */
     @GetMapping("/clinic-histories/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<ClinicHistory> getClinicHistory(@PathVariable Long id) {
         log.debug("REST request to get ClinicHistory : {}", id);
         Optional<ClinicHistory> clinicHistory = clinicHistoryService.findOne(id);
@@ -119,6 +125,7 @@ public class ClinicHistoryResource {
      */
     @DeleteMapping("/clinic-histories/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<Void> deleteClinicHistory(@PathVariable Long id) {
         log.debug("REST request to delete ClinicHistory : {}", id);
         clinicHistoryService.delete(id);
