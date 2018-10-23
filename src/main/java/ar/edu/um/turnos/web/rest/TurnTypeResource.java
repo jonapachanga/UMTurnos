@@ -1,5 +1,6 @@
 package ar.edu.um.turnos.web.rest;
 
+import ar.edu.um.turnos.security.AuthoritiesConstants;
 import com.codahale.metrics.annotation.Timed;
 import ar.edu.um.turnos.domain.TurnType;
 import ar.edu.um.turnos.service.TurnTypeService;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,6 +51,7 @@ public class TurnTypeResource {
      */
     @PostMapping("/turn-types")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<TurnType> createTurnType(@Valid @RequestBody TurnType turnType) throws URISyntaxException {
         log.debug("REST request to save TurnType : {}", turnType);
         if (turnType.getId() != null) {
@@ -71,6 +74,7 @@ public class TurnTypeResource {
      */
     @PutMapping("/turn-types")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<TurnType> updateTurnType(@Valid @RequestBody TurnType turnType) throws URISyntaxException {
         log.debug("REST request to update TurnType : {}", turnType);
         if (turnType.getId() == null) {
@@ -90,6 +94,7 @@ public class TurnTypeResource {
      */
     @GetMapping("/turn-types")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<List<TurnType>> getAllTurnTypes(Pageable pageable) {
         log.debug("REST request to get a page of TurnTypes");
         Page<TurnType> page = turnTypeService.findAll(pageable);
@@ -105,6 +110,7 @@ public class TurnTypeResource {
      */
     @GetMapping("/turn-types/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<TurnType> getTurnType(@PathVariable Long id) {
         log.debug("REST request to get TurnType : {}", id);
         Optional<TurnType> turnType = turnTypeService.findOne(id);
@@ -119,6 +125,7 @@ public class TurnTypeResource {
      */
     @DeleteMapping("/turn-types/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN})
     public ResponseEntity<Void> deleteTurnType(@PathVariable Long id) {
         log.debug("REST request to delete TurnType : {}", id);
         turnTypeService.delete(id);
