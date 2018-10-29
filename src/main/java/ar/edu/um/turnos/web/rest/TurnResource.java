@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,6 +96,14 @@ public class TurnResource {
         Page<Turn> page = turnService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/turns");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/turns/{dateAndHour}")
+    @Timed
+    public ResponseEntity<List<Turn>> findByDateAndHour(@PathVariable ZonedDateTime dateAndHour) {
+        log.debug("REST request to get a list of turns with date and hour {}", dateAndHour);
+        List<Turn> turnList = turnService.findByDateAndHour(dateAndHour);
+        return new ResponseEntity<>(turnList, HttpStatus.OK);
     }
 
     /**

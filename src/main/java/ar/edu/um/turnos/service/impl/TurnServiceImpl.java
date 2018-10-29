@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -36,7 +38,8 @@ public class TurnServiceImpl implements TurnService {
      */
     @Override
     public Turn save(Turn turn) {
-        log.debug("Request to save Turn : {}", turn);        return turnRepository.save(turn);
+        log.debug("Request to save Turn : {}", turn);
+        return turnRepository.save(turn);
     }
 
     /**
@@ -52,6 +55,14 @@ public class TurnServiceImpl implements TurnService {
         return turnRepository.findAll(pageable);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Turn> findByDateAndHour(ZonedDateTime dateAndHour) {
+        ZonedDateTime dateAndHourStart = dateAndHour.withHour(0).withMinute(0).withSecond(0);
+        ZonedDateTime dateAndHourEnd = dateAndHour.withHour(23).withMinute(59).withSecond(59);
+        log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
+        return turnRepository.findByDateAndHour(dateAndHourStart, dateAndHourEnd);
+    }
 
     /**
      * Get one turn by id.
