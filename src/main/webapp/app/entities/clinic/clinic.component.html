@@ -44,7 +44,7 @@
                         <button type="submit"
                                 [routerLink]="['/clinic', clinic.id, 'edit']"
                                 class="btn btn-primary btn-sm"
-                                *jhiHasAnyAuthority="'ROLE_DOCTOR'">
+                                *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
@@ -53,7 +53,7 @@
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm"
-                                *jhiHasAnyAuthority="'ROLE_DOCTOR'">
+                                *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>

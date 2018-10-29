@@ -16,17 +16,17 @@
             "detail": {
                 "title": "Patient"
             },
-            "fullName": "Full Name",
+            "fullName": "Nombre Completo",
             "email": "Email",
-            "phone": "Phone",
-            "mobile": "Mobile",
-            "address": "Address",
-            "insuranceMutual": "Insurance Mutual",
+            "phone": "Telefono",
+            "mobile": "Celular",
+            "address": "Direccion",
+            "insuranceMutual": "Seguro Medico",
             "dni": "Dni",
-            "numberAfiliated": "Number Afiliated",
-            "note": "Note",
-            "clinicHistory": "Clinic History",
-            "turn": "Turn"
+            "numberAfiliated": "Numero de afiliado",
+            "note": "Notas",
+            "clinicHistory": "Historia Clinica",
+            "turn": "Turno"
         }
     }
 }

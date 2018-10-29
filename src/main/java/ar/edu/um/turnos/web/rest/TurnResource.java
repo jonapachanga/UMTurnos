@@ -51,7 +51,7 @@ public class TurnResource {
      */
     @PostMapping("/turns")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Turn> createTurn(@Valid @RequestBody Turn turn) throws URISyntaxException {
         log.debug("REST request to save Turn : {}", turn);
         if (turn.getId() != null) {
@@ -74,7 +74,7 @@ public class TurnResource {
      */
     @PutMapping("/turns")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Turn> updateTurn(@Valid @RequestBody Turn turn) throws URISyntaxException {
         log.debug("REST request to update Turn : {}", turn);
         if (turn.getId() == null) {
@@ -109,7 +109,7 @@ public class TurnResource {
      */
     @GetMapping("/turns/{id}")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Turn> getTurn(@PathVariable Long id) {
         log.debug("REST request to get Turn : {}", id);
         Optional<Turn> turn = turnService.findOne(id);
@@ -124,7 +124,7 @@ public class TurnResource {
      */
     @DeleteMapping("/turns/{id}")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Void> deleteTurn(@PathVariable Long id) {
         log.debug("REST request to delete Turn : {}", id);
         turnService.delete(id);

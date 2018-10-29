@@ -94,7 +94,7 @@ public class PatientResource {
      */
     @GetMapping("/patients")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.DOCTOR, AuthoritiesConstants.SECRETARY})
     public ResponseEntity<List<Patient>> getAllPatients(Pageable pageable) {
         log.debug("REST request to get a page of Patients");
         Page<Patient> page = patientService.findAll(pageable);

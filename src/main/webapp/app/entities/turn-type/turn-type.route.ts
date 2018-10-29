@@ -34,7 +34,7 @@ export const turnTypeRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_DOCTOR', 'ROLE_SECRETARY'],
+            authorities: ['ROLE_USER'],
             defaultSort: 'id,asc',
             pageTitle: 'umturnosApp.turnType.home.title'
         },
@@ -47,7 +47,7 @@ export const turnTypeRoute: Routes = [
             turnType: TurnTypeResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_DOCTOR', 'ROLE_SECRETARY'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'umturnosApp.turnType.home.title'
         },
         canActivate: [UserRouteAccessService]
