@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+
 <div class="row">
     <div class="col-md-3">
         <span class="hipster img-fluid rounded"></span>
@@ -39,5 +41,9 @@
         </p>
     </div>
     <!-- Ejemplo de como se usa Tiny -->
-    <editor apiKey="test" [init]="{plugins: 'link'}"></editor>
+    <!-- <editor apiKey="test" [init]="{plugins: 'link'}"></editor> -->
+</div>
+
+<div *ngIf="calendarOptions">
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions" [(eventsModel)]="events"></ng-fullcalendar>
 </div>
