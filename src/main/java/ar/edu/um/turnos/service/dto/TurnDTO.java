@@ -8,12 +8,19 @@ import java.time.ZonedDateTime;
 
 public class TurnDTO implements Serializable {
 
+    private Long id;
     private String doctorName;
     private String patientName;
     private String clinicName;
     private String phone;
     @DateTimeFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private ZonedDateTime dateAndHour;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) { this.id = id; }
 
     public String getDoctorName() {
         return doctorName;
@@ -58,7 +65,8 @@ public class TurnDTO implements Serializable {
     @Override
     public String toString() {
         return "TurnDTO{" +
-            "doctorName='" + doctorName + '\'' +
+            "id=" + id +
+            ", doctorName='" + doctorName + '\'' +
             ", patientName='" + patientName + '\'' +
             ", clinicName='" + clinicName + '\'' +
             ", phone='" + phone + '\'' +

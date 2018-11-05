@@ -1,5 +1,6 @@
 package ar.edu.um.turnos.web.rest;
 
+import ar.edu.um.turnos.service.dto.TurnDTO;
 import com.codahale.metrics.annotation.Timed;
 import ar.edu.um.turnos.domain.Turn;
 import ar.edu.um.turnos.service.TurnService;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -98,11 +101,11 @@ public class TurnResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    @GetMapping("/turns/{dateAndHour}")
+    @GetMapping("/turns/date/{date}")
     @Timed
-    public ResponseEntity<List<Turn>> findByDateAndHour(@PathVariable ZonedDateTime dateAndHour) {
-        log.debug("REST request to get a list of turns with date and hour {}", dateAndHour);
-        List<Turn> turnList = turnService.findByDateAndHour(dateAndHour);
+    public ResponseEntity<List<TurnDTO>> findByDateAndHour(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        log.debug("REST request to get a list of turns with date and hour {}", date);
+        List<TurnDTO> turnList = turnService.findByDateAndHour(date);
         return new ResponseEntity<>(turnList, HttpStatus.OK);
     }
 
