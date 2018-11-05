@@ -1,6 +1,7 @@
 package ar.edu.um.turnos.web.rest;
 
 import ar.edu.um.turnos.service.dto.TurnDTO;
+import ar.edu.um.turnos.security.AuthoritiesConstants;
 import com.codahale.metrics.annotation.Timed;
 import ar.edu.um.turnos.domain.Turn;
 import ar.edu.um.turnos.service.TurnService;
@@ -16,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,7 +25,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +54,7 @@ public class TurnResource {
      */
     @PostMapping("/turns")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Turn> createTurn(@Valid @RequestBody Turn turn) throws URISyntaxException {
         log.debug("REST request to save Turn : {}", turn);
         if (turn.getId() != null) {
@@ -75,6 +77,7 @@ public class TurnResource {
      */
     @PutMapping("/turns")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Turn> updateTurn(@Valid @RequestBody Turn turn) throws URISyntaxException {
         log.debug("REST request to update Turn : {}", turn);
         if (turn.getId() == null) {
@@ -117,6 +120,7 @@ public class TurnResource {
      */
     @GetMapping("/turns/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Turn> getTurn(@PathVariable Long id) {
         log.debug("REST request to get Turn : {}", id);
         Optional<Turn> turn = turnService.findOne(id);
@@ -131,6 +135,7 @@ public class TurnResource {
      */
     @DeleteMapping("/turns/{id}")
     @Timed
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
     public ResponseEntity<Void> deleteTurn(@PathVariable Long id) {
         log.debug("REST request to delete Turn : {}", id);
         turnService.delete(id);
