@@ -14,10 +14,10 @@ import { EventsService } from './events.service';
 })
 export class HomeComponent implements OnInit {
     calendarOptions: Options;
+    displayEvent: any;
     @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
     account: Account;
     modalRef: NgbModalRef;
-    events: object;
 
     constructor(
         private principal: Principal,
@@ -41,8 +41,7 @@ export class HomeComponent implements OnInit {
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay,listMonth'
                 },
-                selectable: true,
-                events: []
+                events: data
             };
         });
     }
@@ -63,13 +62,38 @@ export class HomeComponent implements OnInit {
         this.modalRef = this.loginModalService.open();
     }
 
-    clearEvents() {
-        this.events = [];
+    clickButton(model: any) {
+        this.displayEvent = model;
     }
 
-    loadEvents() {
-        this.eventsService.getEvents().subscribe(data => {
-            this.events = data;
-        });
+    eventClick(model: any) {
+        model = {
+            event: {
+                id: model.event.id,
+                start: model.event.start,
+                end: model.event.end,
+                title: model.event.title,
+                allDay: model.event.allDay
+                // other params
+            },
+            duration: {}
+        };
+        this.displayEvent = model;
+    }
+
+    updateEvent(model: any) {
+        model = {
+            event: {
+                id: model.event.id,
+                start: model.event.start,
+                end: model.event.end,
+                title: model.event.title
+                // other params
+            },
+            duration: {
+                _data: model.duration._data
+            }
+        };
+        this.displayEvent = model;
     }
 }
