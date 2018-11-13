@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="umturnosApp.clinicHistory.home.title">Clinic Histories</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-clinic-history" [routerLink]="['/clinic-history/new']">
+        <button *jhiHasAnyAuthority="'ROLE_DOCTOR'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-clinic-history" [routerLink]="['/clinic-history/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="umturnosApp.clinicHistory.home.createLabel">
             Create new Clinic History
@@ -37,13 +37,15 @@
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['/clinic-history', clinicHistory.id, 'view' ]"
-                                class="btn btn-info btn-sm">
+                                class="btn btn-info btn-sm"
+                                *jhiHasAnyAuthority="'ROLE_DOCTOR'">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/clinic-history', clinicHistory.id, 'edit']"
-                                class="btn btn-primary btn-sm">
+                                class="btn btn-primary btn-sm"
+                                *jhiHasAnyAuthority="'ROLE_DOCTOR'">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
@@ -51,7 +53,8 @@
                                 [routerLink]="['/', { outlets: { popup: 'clinic-history/'+ clinicHistory.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
+                                class="btn btn-danger btn-sm"
+                                *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>

@@ -98,7 +98,7 @@ public class ClinicResource {
      */
     @GetMapping("/clinics")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.DOCTOR, AuthoritiesConstants.SECRETARY})
     public ResponseEntity<List<Clinic>> getAllClinics(Pageable pageable) {
         log.debug("REST request to get a page of Clinics");
         Page<Clinic> page = clinicService.findAll(pageable);

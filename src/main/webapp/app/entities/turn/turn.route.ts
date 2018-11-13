@@ -34,7 +34,7 @@ export const turnRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR', 'ROLE_SECRETARY'],
             defaultSort: 'id,asc',
             pageTitle: 'umturnosApp.turn.home.title'
         },
@@ -47,7 +47,7 @@ export const turnRoute: Routes = [
             turn: TurnResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR', 'ROLE_SECRETARY'],
             pageTitle: 'umturnosApp.turn.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -59,7 +59,7 @@ export const turnRoute: Routes = [
             turn: TurnResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR', 'ROLE_SECRETARY'],
             pageTitle: 'umturnosApp.turn.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -71,7 +71,7 @@ export const turnRoute: Routes = [
             turn: TurnResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR', 'ROLE_SECRETARY'],
             pageTitle: 'umturnosApp.turn.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -86,7 +86,7 @@ export const turnPopupRoute: Routes = [
             turn: TurnResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DOCTOR', 'ROLE_SECRETARY'],
             pageTitle: 'umturnosApp.turn.home.title'
         },
         canActivate: [UserRouteAccessService],

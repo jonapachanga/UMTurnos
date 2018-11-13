@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="umturnosApp.clinic.home.title">Clinics</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-clinic" [routerLink]="['/clinic/new']">
+        <button *jhiHasAnyAuthority="'ROLE_DOCTOR'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-clinic" [routerLink]="['/clinic/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="umturnosApp.clinic.home.createLabel">
             Create new Clinic
@@ -43,7 +43,8 @@
                         </button>
                         <button type="submit"
                                 [routerLink]="['/clinic', clinic.id, 'edit']"
-                                class="btn btn-primary btn-sm">
+                                class="btn btn-primary btn-sm"
+                                *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
@@ -51,7 +52,8 @@
                                 [routerLink]="['/', { outlets: { popup: 'clinic/'+ clinic.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
+                                class="btn btn-danger btn-sm"
+                                *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>

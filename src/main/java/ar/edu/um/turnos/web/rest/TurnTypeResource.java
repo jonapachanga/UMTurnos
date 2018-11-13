@@ -94,7 +94,7 @@ public class TurnTypeResource {
      */
     @GetMapping("/turn-types")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<List<TurnType>> getAllTurnTypes(Pageable pageable) {
         log.debug("REST request to get a page of TurnTypes");
         Page<TurnType> page = turnTypeService.findAll(pageable);
@@ -110,7 +110,7 @@ public class TurnTypeResource {
      */
     @GetMapping("/turn-types/{id}")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.SECRETARY,AuthoritiesConstants.DOCTOR})
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SECRETARY, AuthoritiesConstants.DOCTOR})
     public ResponseEntity<TurnType> getTurnType(@PathVariable Long id) {
         log.debug("REST request to get TurnType : {}", id);
         Optional<TurnType> turnType = turnTypeService.findOne(id);
