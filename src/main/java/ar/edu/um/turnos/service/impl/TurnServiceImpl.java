@@ -5,6 +5,9 @@ import ar.edu.um.turnos.domain.Turn;
 import ar.edu.um.turnos.repository.TurnRepository;
 import ar.edu.um.turnos.service.dto.TurnDTO;
 import ar.edu.um.turnos.service.mapper.TurnMapper;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +21,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
+import ar.edu.um.turnos.domain.QTurn;
 
 /**
  * Service Implementation for managing Turn.
@@ -68,6 +72,36 @@ public class TurnServiceImpl implements TurnService {
         ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
         log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
         return turnMapper.turnsToTurnsDTO(turnRepository.findByDateAndHour(dateAndHourStart, dateAndHourEnd));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour) {
+        BooleanBuilder builder = new BooleanBuilder();
+        QTurn qTurn = QTurn.turn;
+        OrderSpecifier<ZonedDateTime> orderSpecifier = qTurn.dateAndHour.desc();
+
+       /* if (true) {
+             orderSpecifier = qTurn.dateAndHour.desc();
+        }else{
+            orderSpecifier = qTurn.dateAndHour.asc();
+        }
+        // si el parametro doctor es distinto de null
+        if (true) {
+            builder.and(qTurn.user.firstName.contains("mercaddo"));
+        }
+
+        //Si parametro paciente es distinto de null
+        if (true) {
+            builder.or(qTurn.patient.fullName.contains("martinez"));
+        }*/
+
+        ZonedDateTime dateAndHourStart = dateAndHour.atStartOfDay(ZoneId.systemDefault());
+        ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
+        BooleanExpression  bexp = qTurn.patient.fullName.contains("brend");
+
+        log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
+        return turnMapper.turnsToTurnsDTO(turnRepository.findByDateAndHour(bexp));
     }
 
     /**
