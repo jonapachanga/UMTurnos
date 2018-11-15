@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
-
-<div *ngIf="calendarOptions" class="w-75">
-    <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
-        (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+<div *jhiHasAnyAuthority="['ROLE_DOCTOR', 'ROLE_SECRETARY']" class="my-ng-fullcalendar d-flex justify-content-center">
+    <jhi-um-calendar></jhi-um-calendar>
 </div>

@@ -21,3 +21,8 @@ Main page styles
         background-size: contain;
     }
 }
+
+.my-ng-fullcalendar {
+    width: 50%;
+    margin-left: 300px;
+}

@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+
 @Injectable()
 export class EventsService {
     public getEvents(): Observable<any> {
@@ -59,7 +60,8 @@ export class EventsService {
             {
                 title: 'Click for Google',
                 url: 'http://google.com/',
-                start: yearMonth + '-28'
+                start: yearMonth + '-28',
+                end: yearMonth + '-29'
             }
         ];
         return Observable.of(data);
