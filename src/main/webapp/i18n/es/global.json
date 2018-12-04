@@ -8,11 +8,11 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
-                "turn": "Turn",
-                "patient": "Patient",
-                "clinic": "Clinic",
-                "turnType": "Turn Type",
-                "clinicHistory": "Clinic History",
+                "turn": "Turnos",
+                "patient": "Pacientes",
+                "clinic": "Clinicas",
+                "turnType": "Tipos de turno",
+                "clinicHistory": "Historias clínicas",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -137,5 +137,5 @@
         "idexists": "A new {{entityName}} cannot already have an ID",
         "idnull": "Invalid ID"
     },
-    "footer": "pie de página"
+    "footer": "UMTurnos"
 }

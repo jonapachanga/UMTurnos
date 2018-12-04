@@ -14,7 +14,6 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="name"><span jhiTranslate="umturnosApp.clinic.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="email"><span jhiTranslate="umturnosApp.clinic.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="address"><span jhiTranslate="umturnosApp.clinic.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -26,7 +25,6 @@
             </thead>
             <tbody>
             <tr *ngFor="let clinic of clinics ;trackBy: trackId">
-                <td><a [routerLink]="['/clinic', clinic.id, 'view' ]">{{clinic.id}}</a></td>
                 <td>{{clinic.name}}</td>
                 <td>{{clinic.email}}</td>
                 <td>{{clinic.address}}</td>
