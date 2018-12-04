@@ -28,6 +28,7 @@ export class EventsService {
                 start: yearMonth + '-16T16:00:00'
             },
             {
+                id: 999,
                 title: 'Conference',
                 start: yearMonth + '-11',
                 end: yearMonth + '-13'

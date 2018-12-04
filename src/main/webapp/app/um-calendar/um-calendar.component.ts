@@ -3,6 +3,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { EventsService } from './events.service';
+import { TurnService } from 'app/entities/turn';
+import { ITurn } from 'app/shared/model/turn.model';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { JhiAlertService } from 'ng-jhipster';
+
+import { DateCalendar } from './data-calendar';
 
 @Component({
     selector: 'jhi-um-calendar',
@@ -12,14 +18,20 @@ import { EventsService } from './events.service';
 export class UmCalendarComponent implements OnInit {
     calendarOptions: Options;
     displayEvent: any;
-    dateObj: Date;
+    turns: ITurn[];
+    dateCalendar: Array<DateCalendar>;
     @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
-    constructor(private eventsService: EventsService) {
-        this.dateObj = new Date();
-    }
+    constructor(private eventsService: EventsService, private turnService: TurnService, private jhiAlertService: JhiAlertService) {}
 
     ngOnInit() {
+        this.turnService
+            .query()
+            .subscribe((res: HttpResponse<ITurn[]>) => this.getTurns(res.body), (res: HttpErrorResponse) => this.onError(res.message));
+
+        console.log('Turnos:');
+        console.log(this.turns);
+
         this.eventsService.getEvents().subscribe(data => {
             this.calendarOptions = {
                 editable: true,
@@ -32,6 +44,38 @@ export class UmCalendarComponent implements OnInit {
                 events: data
             };
         });
+
+        // for (const turn of this.turns) {
+        //     const dc = new DateCalendar();
+        //     let date: string;
+        //     date = turn.dateAndHour.year() + '-' + turn.dateAndHour.month() + '-' + turn.dateAndHour.day();
+        //     dc.id = turn.id;
+        //     dc.title = turn.patient.fullName;
+        //     dc.start = date;
+        //
+        //     this.dateCalendar.push(dc);
+        // }
+        // this.dateCalendar.forEach(function (e) {
+        //     console.log(e);
+        // });
+        // // console.log(this.dateCalendar);
+        // console.log('OnInit..');
+    }
+
+    private getTurns(data: ITurn[]) {
+        this.turns = data;
+    }
+
+    loadAll() {
+        this.turnService
+            .query()
+            .subscribe((res: HttpResponse<ITurn[]>) => (this.turns = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+
+        console.log(this.turns);
+    }
+
+    private onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
     }
 
     clickButton(model: any) {
