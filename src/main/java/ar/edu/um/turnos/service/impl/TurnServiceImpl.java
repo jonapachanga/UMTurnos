@@ -7,7 +7,6 @@ import ar.edu.um.turnos.service.dto.TurnDTO;
 import ar.edu.um.turnos.service.mapper.TurnMapper;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,12 +51,12 @@ public class TurnServiceImpl implements TurnService {
         return turnRepository.save(turn);
     }
 
-    /**
-     * Get all the turns.
+
+   /** Get all the turns.
      *
      * @param pageable the pagination information
-     * @return the list of entities
-     */
+     * @return the list of entities*/
+
     @Override
     @Transactional(readOnly = true)
     public Page<Turn> findAll(Pageable pageable) {
@@ -65,51 +64,69 @@ public class TurnServiceImpl implements TurnService {
         return turnRepository.findAll(pageable);
     }
 
-    @Override
+   /*@Override
     @Transactional(readOnly = true)
     public List<TurnDTO> findByDateAndHour(LocalDate dateAndHour) {
         ZonedDateTime dateAndHourStart = dateAndHour.atStartOfDay(ZoneId.systemDefault());
         ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
         log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
         return turnMapper.turnsToTurnsDTO(turnRepository.findByDateAndHour(dateAndHourStart, dateAndHourEnd));
-    }
+    }*/
 
     @Override
     @Transactional(readOnly = true)
-    public List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour) {
+    public List<TurnDTO> findByDateAndHour(LocalDate dateAndHour) {
         BooleanBuilder builder = new BooleanBuilder();
         QTurn qTurn = QTurn.turn;
-        OrderSpecifier<ZonedDateTime> orderSpecifier = qTurn.dateAndHour.desc();
-
-       /* if (true) {
-             orderSpecifier = qTurn.dateAndHour.desc();
-        }else{
-            orderSpecifier = qTurn.dateAndHour.asc();
-        }
-        // si el parametro doctor es distinto de null
-        if (true) {
-            builder.and(qTurn.user.firstName.contains("mercaddo"));
-        }
-
-        //Si parametro paciente es distinto de null
-        if (true) {
-            builder.or(qTurn.patient.fullName.contains("martinez"));
-        }*/
-
         ZonedDateTime dateAndHourStart = dateAndHour.atStartOfDay(ZoneId.systemDefault());
         ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
-        BooleanExpression  bexp = qTurn.patient.fullName.contains("brend");
-
         log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
-        return turnMapper.turnsToTurnsDTO(turnRepository.findByDateAndHour(bexp));
+
+        OrderSpecifier<ZonedDateTime> orderSpecifier = qTurn.dateAndHour.desc();
+        builder.and(qTurn.dateAndHour.between(dateAndHourStart, dateAndHourEnd));
+
+        return turnMapper.turnsToTurnsDTO(turnRepository.findAllByDateAndHour(builder, orderSpecifier));
     }
 
-    /**
+//    @Override
+//    @Transactional(readOnly = true)
+//    public List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour) {
+//        BooleanBuilder builder = new BooleanBuilder();
+//        QTurn qTurn = QTurn.turn;
+//        OrderSpecifier<ZonedDateTime> orderSpecifier = qTurn.dateAndHour.desc();
+//
+//       /*if (true) {
+//             orderSpecifier = qTurn.dateAndHour.desc();
+//        }else{
+//            orderSpecifier = qTurn.dateAndHour.asc();
+//        }
+//        // si el parametro doctor es distinto de null
+//        if (true) {
+//            builder.and(qTurn.user.firstName.contains("mercaddo"));
+//        }
+//
+//        //Si parametro paciente es distinto de null
+//        if (true) {
+//            builder.or(qTurn.patient.fullName.contains("martinez"));
+//        }*/
+//
+//        ZonedDateTime dateAndHourStart = dateAndHour.atStartOfDay(ZoneId.systemDefault());
+//        ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
+//        BooleanExpression bexp = qTurn.patient.fullName.contains("brend");
+//
+//        log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
+//        return turnMapper.turnsToTurnsDTO(turnRepository.findAllByDateAndHour(bexp));
+//    }
+
+
+
+    /*
      * Get one turn by id.
      *
      * @param id the id of the entity
      * @return the entity
      */
+
     @Override
     @Transactional(readOnly = true)
     public Optional<Turn> findOne(Long id) {
@@ -122,6 +139,7 @@ public class TurnServiceImpl implements TurnService {
      *
      * @param id the id of the entity
      */
+
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Turn : {}", id);
