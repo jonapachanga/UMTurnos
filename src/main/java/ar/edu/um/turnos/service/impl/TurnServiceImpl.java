@@ -83,9 +83,22 @@ public class TurnServiceImpl implements TurnService {
         log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
 
         OrderSpecifier<ZonedDateTime> orderSpecifier = qTurn.dateAndHour.desc();
-        builder.and(qTurn.dateAndHour.between(dateAndHourStart, dateAndHourEnd));
+        if (dateAndHour != null) {
+            builder.and(qTurn.dateAndHour.between(dateAndHourStart, dateAndHourEnd));
+        }
 
-        return turnMapper.turnsToTurnsDTO(turnRepository.findAllByDateAndHour(builder, orderSpecifier));
+
+        /*
+        if (clinic != null){
+            builder.and(qTurn.clinic.eq(clinic));
+        }
+
+        if (pacient != null){
+            builder.and(qTurn.pacient.fullName.contains(user.getFullName()));
+        }
+         */
+
+        return turnMapper.turnsToTurnsDTO(turnRepository.findAllDateAndHour(builder, orderSpecifier));
     }
 
 //    @Override

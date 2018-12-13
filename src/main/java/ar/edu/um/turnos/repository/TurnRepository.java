@@ -16,16 +16,14 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public abstract class TurnRepository implements JpaRepository<Turn, Long>, QuerydslPredicateExecutor<Turn> {
+public interface TurnRepository extends JpaRepository<Turn, Long>, QuerydslPredicateExecutor<Turn> {
 
     @Query("select turns from Turn turns where turns.user.login = ?#{principal.username}")
-    public abstract List<Turn> findByUserIsCurrentUser();
+    List<Turn> findByUserIsCurrentUser();
 
     @Query("select turns from Turn turns where turns.dateAndHour between :dateAndHourStart and :dateAndHourEnd")
-    public abstract List<Turn> findByDateAndHour(@Param("dateAndHourStart") ZonedDateTime dateAndHourStart, @Param("dateAndHourEnd") ZonedDateTime dateAndHourEnd);
+    List<Turn> findByDateAndHour(@Param("dateAndHourStart") ZonedDateTime dateAndHourStart, @Param("dateAndHourEnd") ZonedDateTime dateAndHourEnd);
 
     /*busqueda usando dsl*/
-    /*public abstract List<Turn> findAllByDateAndHour(Predicate boolexp, OrderSpecifier<?>... orders);*/
-    public abstract List<Turn> findAllByDateAndHour(Predicate boolexp, OrderSpecifier<?>... orders);
-
+    List<Turn> findAllDateAndHour(Predicate boolexp, OrderSpecifier<?>... orders);
 }
