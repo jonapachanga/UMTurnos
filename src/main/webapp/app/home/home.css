@@ -10,6 +10,21 @@ Main page styles
     background-size: contain;
 }
 
+.um-logo {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 400px;
+    left: 450px;
+}
+
+.objetfit > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: black;
+}
+
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (-moz-min-device-pixel-ratio: 2),
@@ -17,7 +32,7 @@ Main page styles
     only screen and (min-resolution: 192dpi),
     only screen and (min-resolution: 2dppx) {
     .hipster {
-        background: url('../../content/images/hipster2x.png') no-repeat center top;
+        background: url('../../content/images/principal.png') no-repeat center top;
         background-size: contain;
     }
 }
