@@ -3,18 +3,18 @@
     "umturnosApp": {
         "patient" : {
             "home": {
-                "title": "Patients",
-                "createLabel": "Crear nuevo Patient",
-                "createOrEditLabel": "Crear o editar Patient"
+                "title": "Pacientes",
+                "createLabel": "Crear nuevo paciente",
+                "createOrEditLabel": "Crear o editar paciente"
             },
-            "created": "Un nuevo Patient ha sido creado con el identificador {{ param }}",
-            "updated": "Un Patient ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Patient ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo paciente ha sido creado con el identificador {{ param }}",
+            "updated": "Un paciente ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un paciente ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Patient {{ id }}?"
+                "question": "¿Seguro que quiere eliminar paciente {{ id }}?"
             },
             "detail": {
-                "title": "Patient"
+                "title": "paciente"
             },
             "fullName": "Nombre Completo",
             "email": "Email",
