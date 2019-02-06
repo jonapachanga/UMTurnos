@@ -108,7 +108,7 @@ public class TurnResource {
     @Timed
     public ResponseEntity<List<TurnDTO>> findByDateAndHour(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         log.debug("REST request to get a list of turns with date and hour {}", date);
-        List<TurnDTO> turnList = turnService.findByDateAndHour(date);
+        List<TurnDTO> turnList = turnService.findByDateAndHourQ(date);
         return new ResponseEntity<>(turnList, HttpStatus.OK);
     }
 

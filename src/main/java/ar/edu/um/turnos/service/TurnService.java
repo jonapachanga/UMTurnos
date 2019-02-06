@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +31,7 @@ public interface TurnService {
      */
     Page<Turn> findAll(Pageable pageable);
     List<TurnDTO> findByDateAndHour(LocalDate dateAndHour);
+   /* List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour);*/
 
     /**
      * Get the "id" turn.
