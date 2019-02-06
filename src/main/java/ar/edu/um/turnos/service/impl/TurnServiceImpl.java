@@ -64,16 +64,16 @@ public class TurnServiceImpl implements TurnService {
         return turnRepository.findAll(pageable);
     }
 
-   /*@Override
+   @Override
     @Transactional(readOnly = true)
     public List<TurnDTO> findByDateAndHour(LocalDate dateAndHour) {
         ZonedDateTime dateAndHourStart = dateAndHour.atStartOfDay(ZoneId.systemDefault());
         ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
         log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
         return turnMapper.turnsToTurnsDTO(turnRepository.findByDateAndHour(dateAndHourStart, dateAndHourEnd));
-    }*/
+    }
 
-    @Override
+  /*  @Override
     @Transactional(readOnly = true)
     public List<TurnDTO> findByDateAndHour(LocalDate dateAndHour) {
         BooleanBuilder builder = new BooleanBuilder();
@@ -88,7 +88,7 @@ public class TurnServiceImpl implements TurnService {
         }
 
 
-        /*
+        *//*
         if (clinic != null){
             builder.and(qTurn.clinic.eq(clinic));
         }
@@ -96,40 +96,40 @@ public class TurnServiceImpl implements TurnService {
         if (pacient != null){
             builder.and(qTurn.pacient.fullName.contains(user.getFullName()));
         }
-         */
+         *//*
 
         return turnMapper.turnsToTurnsDTO(turnRepository.findAllDateAndHour(builder, orderSpecifier));
     }
+*/
+   /* @Override
+    @Transactional(readOnly = true)
+    public List<TurnDTO> findByDateAndHour(LocalDate dateAndHour) {
+        BooleanBuilder builder = new BooleanBuilder();
+        QTurn qTurn = QTurn.turn;
+        OrderSpecifier<ZonedDateTime> orderSpecifier = qTurn.dateAndHour.desc();
 
-//    @Override
-//    @Transactional(readOnly = true)
-//    public List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour) {
-//        BooleanBuilder builder = new BooleanBuilder();
-//        QTurn qTurn = QTurn.turn;
-//        OrderSpecifier<ZonedDateTime> orderSpecifier = qTurn.dateAndHour.desc();
-//
-//       /*if (true) {
-//             orderSpecifier = qTurn.dateAndHour.desc();
-//        }else{
-//            orderSpecifier = qTurn.dateAndHour.asc();
-//        }
-//        // si el parametro doctor es distinto de null
-//        if (true) {
-//            builder.and(qTurn.user.firstName.contains("mercaddo"));
-//        }
-//
-//        //Si parametro paciente es distinto de null
-//        if (true) {
-//            builder.or(qTurn.patient.fullName.contains("martinez"));
-//        }*/
-//
-//        ZonedDateTime dateAndHourStart = dateAndHour.atStartOfDay(ZoneId.systemDefault());
-//        ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
-//        BooleanExpression bexp = qTurn.patient.fullName.contains("brend");
-//
-//        log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
-//        return turnMapper.turnsToTurnsDTO(turnRepository.findAllByDateAndHour(bexp));
-//    }
+       *//*if (true) {
+             orderSpecifier = qTurn.dateAndHour.desc();
+        }else{
+            orderSpecifier = qTurn.dateAndHour.asc();
+        }
+        // si el parametro doctor es distinto de null
+        if (true) {
+            builder.and(qTurn.user.firstName.contains("mercaddo"));
+        }
+
+        //Si parametro paciente es distinto de null
+        if (true) {
+            builder.or(qTurn.patient.fullName.contains("martinez"));
+        }*//*
+
+       ZonedDateTime dateAndHourStart = dateAndHour.atStartOfDay(ZoneId.systemDefault());
+       ZonedDateTime dateAndHourEnd = dateAndHourStart.withHour(23).withMinute(59).withSecond(59);
+       BooleanExpression bexp = qTurn.patient.fullName.contains("brend");
+
+        log.debug("all Turns filter by date and hour {} {}", dateAndHourStart, dateAndHourEnd);
+       return turnMapper.turnsToTurnsDTO(turnRepository.findAllByDateAndHour(bexp));
+       }*/
 
 
 

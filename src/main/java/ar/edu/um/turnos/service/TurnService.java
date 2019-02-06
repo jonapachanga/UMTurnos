@@ -31,7 +31,7 @@ public interface TurnService {
      */
     Page<Turn> findAll(Pageable pageable);
     List<TurnDTO> findByDateAndHour(LocalDate dateAndHour);
-   /* List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour);*/
+    //List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour);
 
     /**
      * Get the "id" turn.

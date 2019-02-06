@@ -25,5 +25,5 @@ public interface TurnRepository extends JpaRepository<Turn, Long>, QuerydslPredi
     List<Turn> findByDateAndHour(@Param("dateAndHourStart") ZonedDateTime dateAndHourStart, @Param("dateAndHourEnd") ZonedDateTime dateAndHourEnd);
 
     /*busqueda usando dsl*/
-    List<Turn> findAllDateAndHour(Predicate boolexp, OrderSpecifier<?>... orders);
+   // List<Turn> findAllDateAndHour(Predicate boolexp, OrderSpecifier<?>... orders);
 }
