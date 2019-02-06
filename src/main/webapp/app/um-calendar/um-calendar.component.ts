@@ -25,13 +25,6 @@ export class UmCalendarComponent implements OnInit {
     constructor(private eventsService: EventsService, private turnService: TurnService, private jhiAlertService: JhiAlertService) {}
 
     ngOnInit() {
-        this.turnService
-            .query()
-            .subscribe((res: HttpResponse<ITurn[]>) => this.getTurns(res.body), (res: HttpErrorResponse) => this.onError(res.message));
-
-        console.log('Turnos:');
-        console.log(this.turns);
-
         this.eventsService.getEvents().subscribe(data => {
             this.calendarOptions = {
                 editable: true,
@@ -43,6 +36,7 @@ export class UmCalendarComponent implements OnInit {
                 },
                 events: data
             };
+            console.log('Eventos', data);
         });
 
         // for (const turn of this.turns) {

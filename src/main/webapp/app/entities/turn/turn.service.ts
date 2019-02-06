@@ -49,6 +49,10 @@ export class TurnService {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
+    findAllTurns(): Observable<EntityArrayResponseType> {
+        return this.http.get<ITurn[]>(this.resourceUrl, { observe: 'response' });
+    }
+
     private convertDateFromClient(turn: ITurn): ITurn {
         const copy: ITurn = Object.assign({}, turn, {
             dateAndHour: turn.dateAndHour != null && turn.dateAndHour.isValid() ? turn.dateAndHour.toJSON() : null
