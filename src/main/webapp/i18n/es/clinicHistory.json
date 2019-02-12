@@ -3,7 +3,7 @@
     "umturnosApp": {
         "clinicHistory" : {
             "home": {
-                "title": "Hisotrias clinicas",
+                "title": "Historias clinicas",
                 "createLabel": "Crear nueva historia clinica",
                 "createOrEditLabel": "Crear o editar historia clinica"
             },
