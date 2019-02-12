@@ -1,0 +1,9 @@
+<ng-fullcalendar
+    *ngIf="calendarOptions"
+    #ucCalendar [options]="calendarOptions"
+    (eventClick)="eventClick($event.detail)"
+    (eventDrop)="updateEvent($event.detail)"
+    (eventResize)="updateEvent($event.detail)"
+    (clickButton)="clickButton($event.detail)">
+</ng-fullcalendar>
+

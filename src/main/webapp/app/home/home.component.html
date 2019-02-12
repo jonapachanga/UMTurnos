@@ -1,6 +1,6 @@
-<div class="objetfit">
-    <img src="../../content/images/principal.png" class="img-fluid w-100">
-</div>
-<div>
+
+<div *jhiHasAnyAuthority="['ROLE_DOCTOR', 'ROLE_SECRETARY']" class="my-ng-fullcalendar d-flex justify-content-center">
+    <jhi-um-calendar></jhi-um-calendar>
+
     <img src="../../content/images/um_500_500.png" class="um-logo">
 </div>
