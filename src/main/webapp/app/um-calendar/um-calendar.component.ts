@@ -23,6 +23,30 @@ export class UmCalendarComponent implements OnInit {
             this.calendarOptions = {
                 editable: true,
                 eventLimit: false,
+                monthNames: [
+                    'Enero',
+                    'Febrero',
+                    'Marzo',
+                    'Abril',
+                    'Mayo',
+                    'Junio',
+                    'Julio',
+                    'Agosto',
+                    'Septiembre',
+                    'Octubre',
+                    'Noviembre',
+                    'Diciembre'
+                ],
+                buttonText: {
+                    today: 'Hoy',
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Dia',
+                    list: 'Lista'
+                },
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -39,7 +63,7 @@ export class UmCalendarComponent implements OnInit {
     }
 
     eventClick(model: any) {
-        console.log('Click Event');
+        console.log(model);
         model = {
             event: {
                 id: model.event.id,
