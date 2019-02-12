@@ -14,7 +14,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+          <!--  <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="dateAndHour"><span jhiTranslate="umturnosApp.turn.dateAndHour">Date And Hour</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="turnType.name"><span jhiTranslate="umturnosApp.turn.turnType">Turn Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="clinic.name"><span jhiTranslate="umturnosApp.turn.clinic">Clinic</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let turn of turns ;trackBy: trackId">
-                <td><a [routerLink]="['/turn', turn.id, 'view' ]">{{turn.id}}</a></td>
+           <!--     <td><a [routerLink]="['/turn', turn.id, 'view' ]">{{turn.id}}</a></td>-->
                 <td>{{turn.dateAndHour | date:'medium'}}</td>
                 <td>
                     <div *ngIf="turn.turnType">

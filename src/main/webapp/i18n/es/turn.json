@@ -3,23 +3,23 @@
     "umturnosApp": {
         "turn" : {
             "home": {
-                "title": "Turns",
-                "createLabel": "Crear nuevo Turn",
-                "createOrEditLabel": "Crear o editar Turn"
+                "title": "Turnos",
+                "createLabel": "Crear un nuevo Turnos",
+                "createOrEditLabel": "Crear o editar Turnos"
             },
-            "created": "Un nuevo Turn ha sido creado con el identificador {{ param }}",
-            "updated": "Un Turn ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Turn ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Turno ha sido creado con el identificador {{ param }}",
+            "updated": "Un Turno ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Turno ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Turn {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Turno {{ id }}?"
             },
             "detail": {
-                "title": "Turn"
+                "title": "Turnos"
             },
-            "dateAndHour": "Date And Hour",
-            "turnType": "Turn Type",
-            "clinic": "Clinic",
-            "patient": "Patient",
+            "dateAndHour": "Dia y hora",
+            "turnType": "Tipo de turno",
+            "clinic": "Clinica",
+            "patient": "Paciente",
             "user": "User"
         }
     }

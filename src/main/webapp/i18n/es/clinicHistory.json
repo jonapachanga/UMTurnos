@@ -3,23 +3,23 @@
     "umturnosApp": {
         "clinicHistory" : {
             "home": {
-                "title": "Clinic Histories",
-                "createLabel": "Crear nuevo Clinic History",
-                "createOrEditLabel": "Crear o editar Clinic History"
+                "title": "Historias clinicas",
+                "createLabel": "Crear nueva historia clinica",
+                "createOrEditLabel": "Crear o editar historia clinica"
             },
-            "created": "Un nuevo Clinic History ha sido creado con el identificador {{ param }}",
-            "updated": "Un Clinic History ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Clinic History ha sido eliminado con el identificador {{ param }}",
+            "created": "Una nueva historia clinica ha sido creada con el identificador {{ param }}",
+            "updated": "Una historia clinica ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una historia clinica ha sido eliminada con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Clinic History {{ id }}?"
+                "question": "¿Seguro que quiere eliminar la historia clinica {{ id }}?"
             },
             "detail": {
-                "title": "Clinic History"
+                "title": "Historia clinica"
             },
-            "dateAndHour": "Date And Hour",
-            "issue": "Issue",
-            "history": "History",
-            "patient": "Patient"
+            "dateAndHour": "Dia y Hora",
+            "issue": "Padece de:",
+            "history": "Historia",
+            "patient": "Paciente"
         }
     }
 }
