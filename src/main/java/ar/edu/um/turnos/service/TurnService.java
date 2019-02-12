@@ -2,9 +2,12 @@ package ar.edu.um.turnos.service;
 
 import ar.edu.um.turnos.domain.Turn;
 
+import ar.edu.um.turnos.service.dto.TurnDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,7 +30,8 @@ public interface TurnService {
      * @return the list of entities
      */
     Page<Turn> findAll(Pageable pageable);
-
+    List<TurnDTO> findByDateAndHour(LocalDate dateAndHour);
+   /* List<TurnDTO> findByDateAndHourQ(LocalDate dateAndHour);*/
 
     /**
      * Get the "id" turn.

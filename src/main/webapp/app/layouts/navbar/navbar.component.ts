@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { VERSION } from 'app/app.constants';
-import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from 'app/core';
+import { JhiLanguageHelper, Principal, LoginModalService, LoginService, Account } from 'app/core';
 import { ProfileService } from '../profiles/profile.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { ProfileService } from '../profiles/profile.service';
     styleUrls: ['navbar.css']
 })
 export class NavbarComponent implements OnInit {
+    account: Account;
     inProduction: boolean;
     isNavbarCollapsed: boolean;
     languages: any[];
@@ -27,7 +29,8 @@ export class NavbarComponent implements OnInit {
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private eventManager: JhiEventManager
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -41,6 +44,19 @@ export class NavbarComponent implements OnInit {
         this.profileService.getProfileInfo().then(profileInfo => {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
+        });
+
+        this.principal.identity().then(account => {
+            this.account = account;
+        });
+        this.registerAuthenticationSuccess();
+    }
+
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            this.principal.identity().then(account => {
+                this.account = account;
+            });
         });
     }
 
@@ -64,6 +80,7 @@ export class NavbarComponent implements OnInit {
         this.collapseNavbar();
         this.loginService.logout();
         this.router.navigate(['']);
+        this.account = null;
     }
 
     toggleNavbar() {

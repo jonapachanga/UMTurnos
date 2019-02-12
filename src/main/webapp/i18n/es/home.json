@@ -1,6 +1,6 @@
 {
     "home": {
-        "title": "¡Bienvenido, Java Hipster!",
+        "title": "UM Turnos",
         "subtitle": "Esta es su página de inicio",
         "logged": {
             "message": "Está conectado como \"{{username}}\"."
