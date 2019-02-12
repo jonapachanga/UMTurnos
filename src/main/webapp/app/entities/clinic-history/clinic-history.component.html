@@ -14,7 +14,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!--<th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="dateAndHour"><span jhiTranslate="umturnosApp.clinicHistory.dateAndHour">Date And Hour</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="issue"><span jhiTranslate="umturnosApp.clinicHistory.issue">Issue</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="history"><span jhiTranslate="umturnosApp.clinicHistory.history">History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let clinicHistory of clinicHistories ;trackBy: trackId">
-                <td><a [routerLink]="['/clinic-history', clinicHistory.id, 'view' ]">{{clinicHistory.id}}</a></td>
+               <!-- <td><a [routerLink]="['/clinic-history', clinicHistory.id, 'view' ]">{{clinicHistory.id}}</a></td>-->
                 <td>{{clinicHistory.dateAndHour | date:'medium'}}</td>
                 <td>{{clinicHistory.issue}}</td>
                 <td>{{clinicHistory.history}}</td>
