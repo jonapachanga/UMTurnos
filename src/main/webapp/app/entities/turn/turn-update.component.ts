@@ -87,6 +87,7 @@ export class TurnUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.turn.dateAndHour = moment(this.dateAndHour, DATE_TIME_FORMAT);
+        this.turn.user = this.account;
         if (this.turn.id !== undefined) {
             this.subscribeToSaveResponse(this.turnService.update(this.turn));
         } else {
