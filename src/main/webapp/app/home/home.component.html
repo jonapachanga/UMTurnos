@@ -1,6 +1,16 @@
+<div *ngIf="isAuthenticated(); then loggedIn else notLogged"></div>
 
-<div *jhiHasAnyAuthority="['ROLE_DOCTOR', 'ROLE_SECRETARY']" class="my-ng-fullcalendar d-flex justify-content-center">
-    <jhi-um-calendar></jhi-um-calendar>
+<ng-template #loggedIn>
+    <div *jhiHasAnyAuthority="['ROLE_DOCTOR', 'ROLE_SECRETARY']"
+         class="my-ng-fullcalendar d-flex justify-content-center"
+    >
+        <jhi-um-calendar></jhi-um-calendar>
+    </div>
+</ng-template>
 
-    <img src="../../content/images/um_500_500.png" class="um-logo">
-</div>
+
+<ng-template #notLogged>
+    <div class="hipster">
+        <img src="../../content/images/principal.png" class="um-logo">
+    </div>
+</ng-template>
