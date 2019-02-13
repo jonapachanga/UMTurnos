@@ -14,7 +14,7 @@ import { IClinic } from 'app/shared/model/clinic.model';
 import { ClinicService } from 'app/entities/clinic';
 import { IPatient } from 'app/shared/model/patient.model';
 import { PatientService } from 'app/entities/patient';
-import { IUser, UserService } from 'app/core';
+import { IUser, UserService, Account, Principal } from 'app/core';
 
 @Component({
     selector: 'jhi-turn-update',
@@ -30,6 +30,7 @@ export class TurnUpdateComponent implements OnInit {
 
     patients: IPatient[];
 
+    account: Account;
     users: IUser[];
     dateAndHour: string;
 
@@ -40,10 +41,15 @@ export class TurnUpdateComponent implements OnInit {
         private clinicService: ClinicService,
         private patientService: PatientService,
         private userService: UserService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private principal: Principal
     ) {}
 
     ngOnInit() {
+        this.principal.identity().then(account => {
+            this.account = account;
+            console.log('Cuenta: ', this.account);
+        });
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ turn }) => {
             this.turn = turn;
