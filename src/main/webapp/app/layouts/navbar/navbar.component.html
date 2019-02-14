@@ -35,13 +35,13 @@
                             <span jhiTranslate="global.menu.entities.turn">Turn</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN' , 'ROLE_DOCTOR', 'ROLE_SECRETARY']">
                         <a class="dropdown-item" routerLink="patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.patient">Patient</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN' , 'ROLE_DOCTOR', 'ROLE_SECRETARY']">
                         <a class="dropdown-item" routerLink="clinic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.clinic">Clinic</span>

@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { EventsService } from './events.service';
-import { ITurn } from 'app/shared/model/turn.model';
 
 @Component({
     selector: 'jhi-um-calendar',
@@ -13,13 +12,17 @@ import { ITurn } from 'app/shared/model/turn.model';
 export class UmCalendarComponent implements OnInit {
     calendarOptions: Options;
     displayEvent: any;
-    turns: ITurn[];
+    data: any[];
     @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
     constructor(private eventsService: EventsService) {}
 
     ngOnInit() {
         this.eventsService.getEvents().subscribe(data => {
+            this.data = data;
+        });
+
+        setTimeout(() => {
             this.calendarOptions = {
                 editable: true,
                 eventLimit: false,
@@ -52,10 +55,9 @@ export class UmCalendarComponent implements OnInit {
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay,listMonth'
                 },
-                events: data
+                events: this.data
             };
-            console.log('Eventos', data);
-        });
+        }, 1000);
     }
 
     clickButton(model: any) {
