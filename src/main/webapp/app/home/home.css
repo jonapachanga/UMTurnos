@@ -4,18 +4,15 @@ Main page styles
 
 .hipster {
     display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url('../../content/images/hipster.png') no-repeat center top;
+    background: url('../../content/images/principal.png') no-repeat center top;
     background-size: contain;
+    width: 100%;
+    height: 100%;
 }
 
 .um-logo {
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    top: 400px;
-    left: 450px;
+    width: 100%;
+    height: 100%;
 }
 
 .objetfit > img {

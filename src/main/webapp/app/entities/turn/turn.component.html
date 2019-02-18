@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="umturnosApp.turn.home.title">Turns</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-turn" [routerLink]="['/turn/new']">
+        <button *jhiHasAnyAuthority="['ROLE_DOCTOR', 'ROLE_SECRETARY']" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-turn" [routerLink]="['/turn/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="umturnosApp.turn.home.createLabel">
             Create new Turn
