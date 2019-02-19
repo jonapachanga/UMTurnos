@@ -31,31 +31,31 @@
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>
                         <a class="dropdown-item" routerLink="turn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <fa-icon [icon]="'calendar-plus'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.turn">Turn</span>
                         </a>
                     </li>
                     <li *jhiHasAnyAuthority="['ROLE_ADMIN' , 'ROLE_DOCTOR', 'ROLE_SECRETARY']">
                         <a class="dropdown-item" routerLink="patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <fa-icon [icon]="'address-book'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.patient">Patient</span>
                         </a>
                     </li>
                     <li *jhiHasAnyAuthority="['ROLE_ADMIN' , 'ROLE_DOCTOR', 'ROLE_SECRETARY']">
                         <a class="dropdown-item" routerLink="clinic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <fa-icon [icon]="'building'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.clinic">Clinic</span>
                         </a>
                     </li>
                     <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
                         <a class="dropdown-item" routerLink="turn-type" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <fa-icon [icon]="'cog'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.turnType">Turn Type</span>
                         </a>
                     </li>
                     <li *jhiHasAnyAuthority="'ROLE_DOCTOR'">
                         <a class="dropdown-item" routerLink="clinic-history" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <fa-icon [icon]="'address-card'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.clinicHistory">Clinic History</span>
                         </a>
                     </li>
