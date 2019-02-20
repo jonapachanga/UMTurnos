@@ -14,7 +14,7 @@
                 "question": "¿Seguro que quiere eliminar Turno {{ id }}?"
             },
             "detail": {
-                "title": "Turnos"
+                "title": "Turno"
             },
             "dateAndHour": "Dia y hora",
             "turnType": "Tipo de turno",

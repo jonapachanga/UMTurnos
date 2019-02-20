@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { ITurn } from 'app/shared/model/turn.model';
@@ -6,37 +6,43 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { TurnService } from 'app/entities/turn';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared';
+import { Subscription } from 'rxjs';
 
 @Injectable()
-export class EventsService {
-    dateCalendar: any[] = [];
-    turns: HttpResponse<ITurn[]>;
+export class EventsService implements OnDestroy {
+    dateCalendar: any[];
+    turns: Subscription;
 
-    constructor(private turnService: TurnService) {}
-
-    public getEvents(): Observable<any> {
-        this.loadAll();
-        return Observable.of(this.dateCalendar);
+    constructor(private turnService: TurnService) {
+        this.dateCalendar = [];
     }
 
-    private loadAll() {
-        this.turnService.query().subscribe(
+    public getEvents(): Observable<any> {
+        this.turns = this.turnService.query().subscribe(
             (res: HttpResponse<ITurn[]>) => {
                 this.convertTurnsForCalendar(res);
-                console.log(this.dateCalendar);
             },
             (res: HttpErrorResponse) => console.log(res.message)
         );
+
+        return Observable.of(this.dateCalendar);
     }
 
     private convertTurnsForCalendar(data: HttpResponse<ITurn[]>) {
-        data.body.forEach((turn: ITurn, index) => {
+        data.body.forEach((turn: ITurn) => {
             const date = {
-                id: index,
+                id: turn.id,
                 title: turn.patient.fullName,
                 start: moment(turn.dateAndHour).format(DATE_TIME_FORMAT)
             };
+
             this.dateCalendar.push(date);
         });
+    }
+
+    ngOnDestroy(): void {
+        this.turns.unsubscribe();
+        this.dateCalendar = null;
+        console.log('Destroy Service');
     }
 }

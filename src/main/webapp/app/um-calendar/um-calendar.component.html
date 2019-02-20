@@ -1,9 +1,48 @@
-<ng-fullcalendar
-    *ngIf="calendarOptions"
-    #ucCalendar [options]="calendarOptions"
-    (eventClick)="eventClick($event.detail)"
-    (eventDrop)="updateEvent($event.detail)"
-    (eventResize)="updateEvent($event.detail)"
-    (clickButton)="clickButton($event.detail)">
-</ng-fullcalendar>
+<div class="row p-3">
+    <div class="col-10" *ngIf="calendarOptions">
+        <ng-fullcalendar
+            #ucCalendar [options]="calendarOptions"
+            (eventClick)="eventClick($event.detail)"
+            (eventDrop)="updateEvent($event.detail)"
+            (eventResize)="updateEvent($event.detail)"
+            (clickButton)="clickButton($event.detail)">
+        </ng-fullcalendar>
+    </div>
+    <div class="col-2">
+        <div class="row">
+            <div class="col-12">
+                <div *ngIf="turn">
+                    <h2><span jhiTranslate="umturnosApp.turn.detail.title">Turn</span> Nº {{turn.id}}</h2>
+                    <hr>
+                    <jhi-alert-error></jhi-alert-error>
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="umturnosApp.turn.dateAndHour">Date And Hour</span></dt>
+                        <dd>
+                            <span>{{turn.dateAndHour | date:'medium'}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="umturnosApp.turn.turnType">Turn Type</span></dt>
+                        <dd>
+                            <div *ngIf="turn.turnType">
+                                <a [routerLink]="['/turn-type', turn.turnType?.id, 'view']">{{turn.turnType?.name}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="umturnosApp.turn.clinic">Clinic</span></dt>
+                        <dd>
+                            <div *ngIf="turn.clinic">
+                                <a [routerLink]="['/clinic', turn.clinic?.id, 'view']">{{turn.clinic?.name}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="umturnosApp.turn.patient">Patient</span></dt>
+                        <dd>
+                            <div *ngIf="turn.patient">
+                                <a [routerLink]="['/patient', turn.patient?.id, 'view']">{{turn.patient?.fullName}}</a>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
