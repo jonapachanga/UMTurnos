@@ -1,9 +1,7 @@
 <div *ngIf="isAuthenticated(); then loggedIn else notLogged"></div>
 
 <ng-template #loggedIn>
-    <div *jhiHasAnyAuthority="['ROLE_DOCTOR', 'ROLE_SECRETARY']"
-         class="my-ng-fullcalendar d-flex justify-content-center"
-    >
+    <div *jhiHasAnyAuthority="['ROLE_DOCTOR', 'ROLE_SECRETARY']">
         <jhi-um-calendar></jhi-um-calendar>
     </div>
 </ng-template>
